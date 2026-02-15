@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eva Shoes - SoftShell</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-images {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-images img,
+        .gallery-images .placeholder-img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+            aspect-ratio: 3/4;
+            background: #f5f5f5;
+            min-height: 350px;
+        }
+
+        .gallery-images .placeholder-img {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e0e0e0;
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* Модальное окно для просмотра изображений */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #bbb;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 25px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-nav.prev {
+            left: 30px;
+        }
+
+        .lightbox-nav.next {
+            right: 30px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Курсор для изображений */
+        .product-gallery img,
+        .product-image img {
+            cursor: pointer;
+        }
+
+        /* Модальное окно для размеров */
+        .sizes-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .sizes-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sizes-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .sizes-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .sizes-modal-close:hover {
+            color: #333;
+        }
+
+        .sizes-modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .sizes-modal-content p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .sizes-list {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .sizes-list p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .btn-order {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-order:hover {
+            background: #45a049;
+        }
+
+        /* Стили для расширенного описания категории */
+        .section-description {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 35px;
+            line-height: 1.8;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .section-description h3 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .section-description p {
+            margin-bottom: 12px;
+        }
+
+        .section-description ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .section-description ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SoftShell</h1>
+                <p class="tagline">Качественные товары для вас</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="../about.html">О нас</a></li>
+                    <li><a href="softshell.html">Softshell</a></li>
+                    <li><a href="eva-shoes.html" class="active">Eva shoes</a></li>
+                    <li><a href="waterproofs.html">Waterproofs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Баннер категории -->
+    <section class="category-hero">
+        <div class="container">
+            <h1>Eva Shoes</h1>
+            <p>Легкая и удобная обувь из инновационного материала EVA</p>
+        </div>
+    </section>
+
+    <!-- Подкатегории -->
+    <section class="subcategories">
+        <div class="container">
+            <h2>Выберите подкатегорию</h2>
+            <div class="subcategories-grid">
+                <a href="#without-insulation" class="subcategory-card">
+                    <h3>Без утеплителя</h3>
+                    <p>Легкая обувь для теплого времени года</p>
+                </a>
+                <a href="#insulated" class="subcategory-card">
+                    <h3>Утепленные</h3>
+                    <p>Теплая обувь с утеплителем для холодной погоды</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Без утепления -->
+    <section id="without-insulation" class="catalog">
+        <div class="container">
+            <h2>Обувь Eva без утепления</h2>
+            <div class="section-description">
+                <p><strong>Легкая и комфортная обувь для лета и межсезонья</strong></p>
+                <p>Обувь из инновационного материала EVA (этиленвинилацетат) отличается исключительной легкостью, водонепроницаемостью и долговечностью. Идеально подходит для дачи, сада, пляжа и активного отдыха на природе.</p>
+
+                <h3>Преимущества обуви EVA:</h3>
+                <ul>
+                    <li><strong>Суперлегкая</strong> – практически не ощущается на ноге</li>
+                    <li><strong>100% водонепроницаемая</strong> – защита от воды и грязи</li>
+                    <li><strong>Легко моется</strong> – достаточно ополоснуть водой</li>
+                    <li><strong>Не впитывает запахи</strong> – гигиеничный материал</li>
+                    <li><strong>Морозостойкая</strong> – не трескается при низких температурах</li>
+                    <li><strong>Амортизация</strong> – мягкая подошва снижает нагрузку на суставы</li>
+                </ul>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="4">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_withoutInsulation/black1.webp" alt="Сапоги Eva летние - фото 1">
+                                <img src="../images/products/boots_withoutInsulation/black2.webp" alt="Сапоги Eva летние - фото 2">
+                                <img src="../images/products/boots_withoutInsulation/black3.webp" alt="Сапоги Eva летние - фото 3">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Черные (темно-серые)</h3>
+                    <p class="description">Легкие резиновые сапоги из EVA материала. Водонепроницаемые, удобные для дачи и сада.</p>
+                    <p class="price">15 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="5">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_withoutInsulation/red1.webp" alt="Красные - фото 1">
+                                <img src="../images/products/boots_withoutInsulation/red2.webp" alt="Красные - фото 2">
+                                <img src="../images/products/boots_withoutInsulation/red3.webp" alt="Красные - фото 3">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Красные</h3>
+                    <p class="description">Удобные сабо для дома и улицы. Антискользящая подошва, яркие цвета.</p>
+                    <p class="price">15 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Утепленные -->
+    <section id="insulated" class="catalog" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Утепленная обувь Eva</h2>
+            <div class="section-description">
+                <p><strong>Теплая обувь для холодного времени года</strong></p>
+                <p>Утепленная обувь EVA сочетает все преимущества материала EVA с дополнительной теплоизоляцией. Подходит для зимней рыбалки, охоты, работы на улице и активного отдыха в холодное время года.</p>
+
+                <h3>Особенности утепленной обуви:</h3>
+                <ul>
+                    <li><strong>Надежное утепление</strong> – флисовая или меховая подкладка сохраняет тепло</li>
+                    <li><strong>Защита до -30°C</strong> – комфорт даже в сильные морозы</li>
+                    <li><strong>Водонепроницаемость</strong> – полная защита от воды и снега</li>
+                    <li><strong>Легкость</strong> – намного легче традиционной зимней обуви</li>
+                    <li><strong>Нескользящая подошва</strong> – безопасность на льду и снегу</li>
+                    <li><strong>Легко надевать</strong> – широкое голенище для удобства</li>
+                </ul>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="0">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_insulated/black1.jpg" alt="Сапоги Eva Winter Pro - фото 1">
+                                <img src="../images/products/boots_insulated/black2.jpg" alt="Сапоги Eva Winter Pro - фото 2">
+                                <img src="../images/products/boots_insulated/black3.jpg" alt="Сапоги Eva Winter Pro - фото 3">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Черные</h3>
+                    <p class="description">Зимние сапоги с натуральным мехом внутри. Защита до -30°C, нескользящая подошва.</p>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="1">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_insulated/red3.webp" alt="Полусапоги Eva Warm - фото 1">
+                                <img src="../images/products/boots_insulated/red1.webp" alt="Полусапоги Eva Warm - фото 2">
+                                <img src="../images/products/boots_insulated/red2.webp" alt="Полусапоги Eva Warm - фото 3">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Красные</h3>
+                    <p class="description">Утепленные полусапоги с флисовой подкладкой. Комфорт при температуре до -15°C.</p>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="2">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_insulated/blue1.webp" alt="Ботинки Eva Snow - фото 1">
+                                <img src="../images/products/boots_insulated/blue2.webp" alt="Ботинки Eva Snow - фото 2">
+                                <img src="../images/products/boots_insulated/blue3.webp" alt="Ботинки Eva Snow - фото 3">
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Синие</h3>
+                    <p class="description">Зимние ботинки с усиленным утеплителем и высоким голенищем.</p>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для просмотра изображений -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <span class="lightbox-nav prev" onclick="lightboxNavigate(-1)">&#10094;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Увеличенное изображение">
+        </div>
+        <span class="lightbox-nav next" onclick="lightboxNavigate(1)">&#10095;</span>
+        <div class="lightbox-counter">
+            <span id="lightboxCounter">1 / 1</span>
+        </div>
+    </div>
+
+    <!-- Модальное окно для информации о размерах -->
+    <div id="sizesModal" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal()">&times;</button>
+            <h2>Доступные размеры</h2>
+            <p>У нас в наличии следующие размеры этой модели обуви:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> 36, 37, 38, 39, 40, 41, 42</p>
+                <p><strong>Цвет:</strong> В ассортименте</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <script>
+        // Хранение текущих индексов слайдов для каждой галереи
+        const currentSlides = [0, 0, 0, 0, 0, 0];
+
+        function changeSlide(galleryIndex, direction, event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const images = gallery.querySelector('.gallery-images');
+            const indicators = gallery.querySelectorAll('.gallery-indicator');
+            const totalSlides = indicators.length;
+
+            // Обновляем индекс
+            currentSlides[galleryIndex] += direction;
+
+            // Зацикливаем
+            if (currentSlides[galleryIndex] < 0) {
+                currentSlides[galleryIndex] = totalSlides - 1;
+            } else if (currentSlides[galleryIndex] >= totalSlides) {
+                currentSlides[galleryIndex] = 0;
+            }
+
+            // Применяем трансформацию
+            const offset = -currentSlides[galleryIndex] * 100;
+            images.style.transform = `translateX(${offset}%)`;
+
+            // Обновляем индикаторы
+            updateIndicators(galleryIndex);
+        }
+
+        function goToSlide(galleryIndex, slideIndex, event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const images = gallery.querySelector('.gallery-images');
+
+            currentSlides[galleryIndex] = slideIndex;
+
+            // Применяем трансформацию
+            const offset = -slideIndex * 100;
+            images.style.transform = `translateX(${offset}%)`;
+
+            // Обновляем индикаторы
+            updateIndicators(galleryIndex);
+        }
+
+        function updateIndicators(galleryIndex) {
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const indicators = gallery.querySelectorAll('.gallery-indicator');
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlides[galleryIndex]) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // === LIGHTBOX FUNCTIONALITY ===
+        let currentLightboxGallery = null;
+        let currentLightboxIndex = 0;
+        let lightboxImages = [];
+
+        // Инициализация обработчиков кликов для всех изображений
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для карточек с галереями
+            const galleries = document.querySelectorAll('.product-gallery');
+            galleries.forEach((gallery, galleryIndex) => {
+                const images = gallery.querySelectorAll('.gallery-images img');
+                images.forEach((img, imgIndex) => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openLightbox(galleryIndex, imgIndex, true);
+                    });
+                });
+            });
+
+            // Обработчики для карточек без галерей (обычные изображения)
+            const singleImages = document.querySelectorAll('.product-image > img');
+            singleImages.forEach((img) => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openLightbox(null, 0, false, [img.src]);
+                });
+            });
+        });
+
+        function openLightbox(galleryIndex, imageIndex, isGallery, singleImageSrc = null) {
+            const modal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImage');
+
+            if (isGallery && galleryIndex !== null) {
+                // Открываем галерею
+                const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+                const images = gallery.querySelectorAll('.gallery-images img');
+                lightboxImages = Array.from(images).map(img => img.src);
+                currentLightboxGallery = galleryIndex;
+                currentLightboxIndex = imageIndex;
+            } else {
+                // Открываем одиночное изображение
+                lightboxImages = singleImageSrc;
+                currentLightboxGallery = null;
+                currentLightboxIndex = 0;
+            }
+
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            modal.classList.add('active');
+            updateLightboxCounter();
+
+            // Блокируем прокрутку страницы
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            lightboxImages = [];
+            currentLightboxGallery = null;
+        }
+
+        function lightboxNavigate(direction) {
+            if (lightboxImages.length <= 1) return;
+
+            currentLightboxIndex += direction;
+
+            // Зацикливаем
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = lightboxImages.length - 1;
+            } else if (currentLightboxIndex >= lightboxImages.length) {
+                currentLightboxIndex = 0;
+            }
+
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            updateLightboxCounter();
+        }
+
+        function updateLightboxCounter() {
+            const counter = document.getElementById('lightboxCounter');
+            counter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+        }
+
+        // Обработчики клавиатуры
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightboxModal');
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                lightboxNavigate(-1);
+            } else if (e.key === 'ArrowRight') {
+                lightboxNavigate(1);
+            }
+        });
+
+        // Закрытие по клику на фон
+        document.getElementById('lightboxModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // === SIZES MODAL FUNCTIONALITY ===
+        function openSizesModal(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const modal = document.getElementById('sizesModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSizesModal() {
+            const modal = document.getElementById('sizesModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleOrder() {
+            // Функция для обработки заказа
+            // Будет реализована позже
+            console.log('Заказ оформлен');
+        }
+
+        // Закрытие модального окна размеров по клику на фон
+        document.getElementById('sizesModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSizesModal();
+            }
+        });
+
+        // Закрытие модального окна размеров по клавише Escape
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('sizesModal');
+            if (modal.classList.contains('active') && e.key === 'Escape') {
+                closeSizesModal();
+            }
+        });
+    </script>
+</body>
+</html>

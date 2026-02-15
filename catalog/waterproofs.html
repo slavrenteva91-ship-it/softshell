@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterproofs - SoftShell</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-images {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-images img,
+        .gallery-images .placeholder-img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+            aspect-ratio: 3/4;
+            background: #f5f5f5;
+            min-height: 350px;
+        }
+
+        .gallery-images .placeholder-img {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e0e0e0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .gallery-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .gallery-indicator.active {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        /* Модальное окно для просмотра изображений */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            user-select: none;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: #bbb;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 25px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-nav.prev {
+            left: 30px;
+        }
+
+        .lightbox-nav.next {
+            right: 30px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Курсор для изображений */
+        .product-gallery img,
+        .product-image img {
+            cursor: pointer;
+        }
+
+        /* Модальное окно для размеров */
+        .sizes-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .sizes-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sizes-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .sizes-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+
+        .sizes-modal-close:hover {
+            color: #333;
+        }
+
+        .sizes-modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .sizes-modal-content p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .sizes-list {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .sizes-list p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .btn-order {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-order:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SoftShell</h1>
+                <p class="tagline">Качественные товары для вас</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Главная</a></li>
+                    <li><a href="../about.html">О нас</a></li>
+                    <li><a href="softshell.html">Softshell</a></li>
+                    <li><a href="eva-shoes.html">Eva shoes</a></li>
+                    <li><a href="waterproofs.html" class="active">Waterproofs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Баннер категории -->
+    <section class="category-hero">
+        <div class="container">
+            <h1>Waterproofs</h1>
+            <p>Водонепроницаемая одежда для максимальной защиты от непогоды</p>
+        </div>
+    </section>
+
+    <!-- Подкатегории -->
+    <section class="subcategories">
+        <div class="container">
+            <h2>Выберите подкатегорию</h2>
+            <div class="subcategories-grid">
+                <a href="#overalls" class="subcategory-card">
+                    <h3>Комбинезоны (Overalls)</h3>
+                    <p>Полная защита от дождя и ветра</p>
+                </a>
+                <a href="#semi-overalls" class="subcategory-card">
+                    <h3>Полукомбинезоны (Semi-overalls)</h3>
+                    <p>Удобные полукомбинезоны с защитой нижней части тела</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Комбинезоны -->
+    <section id="overalls" class="catalog">
+        <div class="container">
+            <h2>Водонепроницаемые комбинезоны</h2>
+            <p class="section-description">Полная защита от непогоды для любой активности</p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="0">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_overalls/grey-beige.jpg" alt="Комбинезон Waterproof Pro - фото 1">
+                                <img src="../images/products/waterproof_overalls/grey-beige2.jpg" alt="Комбинезон Waterproof Pro - фото 2">
+                                <img src="../images/products/waterproof_overalls/grey-beige3.jpg" alt="Комбинезон Waterproof Pro - фото 3">
+                                <img src="../images/products/waterproof_overalls/grey-beige4.jpg" alt="Комбинезон Waterproof Pro - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(0, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(0, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(0, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Серо-бежевый</h3>
+                    <p class="description">Профессиональный комбинезон с проклеенными швами и мембраной 10000/10000.</p>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="1">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_overalls/jeans.jpg" alt="Комбинезон Rain Master - фото 1">
+                                <img src="../images/products/waterproof_overalls/jeans2.jpg" alt="Комбинезон Rain Master - фото 2">
+                                <img src="../images/products/waterproof_overalls/jeans3.jpg" alt="Комбинезон Rain Master - фото 3">
+                                <img src="../images/products/waterproof_overalls/jeans4.jpg" alt="Комбинезон Rain Master - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(1, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(1, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(1, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Джинсовый</h3>
+                    <p class="description">Легкий дождевик-комбинезон для походов и рыбалки. Компактно складывается.</p>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Полукомбинезоны -->
+    <section id="semi-overalls" class="catalog" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Водонепроницаемые полукомбинезоны</h2>
+            <p class="section-description">Удобная защита с регулируемыми лямками</p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="2">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/grey-beige.jpg" alt="Полукомбинезон Fishing Pro - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/grey-beige2.jpg" alt="Полукомбинезон Fishing Pro - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/grey-beige3.jpg" alt="Полукомбинезон Fishing Pro - фото 3">
+                                <img src="../images/products/waterproof_semi-overalls/grey-beige4.jpg" alt="Полукомбинезон Fishing Pro - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(2, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(2, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(2, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Серо-бежевый</h3>
+                    <p class="description">Специально для рыбалки и охоты. Усиленные колени, множество карманов.</p>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="3">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/jeans.jpg" alt="Полукомбинезон Work Guard - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/jeans2.jpg" alt="Полукомбинезон Work Guard - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/jeans3.jpg" alt="Полукомбинезон Work Guard - фото 3">
+                                <img src="../images/products/waterproof_semi-overalls/jeans4.jpg" alt="Полукомбинезон Work Guard - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(3, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(3, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(3, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Джинсовый</h3>
+                    <p class="description">Рабочий полукомбинезон с защитой от влаги и грязи. Высокая износостойкость.</p>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="4">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/grey.jpg" alt="Полукомбинезон Trekking Light - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/grey2.jpg" alt="Полукомбинезон Trekking Light - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/grey3.jpg" alt="Полукомбинезон Trekking Light - фото 3">
+                                <img src="../images/products/waterproof_semi-overalls/grey4.jpg" alt="Полукомбинезон Trekking Light - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(4, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(4, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(4, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Серый</h3>
+                    <p class="description">Легкий туристический полукомбинезон с вентиляцией и компрессионной упаковкой.</p>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для просмотра изображений -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <span class="lightbox-nav prev" onclick="lightboxNavigate(-1)">&#10094;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Увеличенное изображение">
+        </div>
+        <span class="lightbox-nav next" onclick="lightboxNavigate(1)">&#10095;</span>
+        <div class="lightbox-counter">
+            <span id="lightboxCounter">1 / 1</span>
+        </div>
+    </div>
+
+    <!-- Модальное окно для информации о размерах -->
+    <div id="sizesModal" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal()">&times;</button>
+            <h2>Доступные размеры</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> S, M, L, XL, XXL</p>
+                <p><strong>Цвет:</strong> В ассортименте</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <script>
+        // Хранение текущих индексов слайдов для каждой галереи
+        const currentSlides = [];
+
+        function changeSlide(galleryIndex, direction) {
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const images = gallery.querySelector('.gallery-images');
+            const indicators = gallery.querySelectorAll('.gallery-indicator');
+            const totalSlides = indicators.length;
+
+            if (!currentSlides[galleryIndex]) currentSlides[galleryIndex] = 0;
+
+            // Обновляем индекс
+            currentSlides[galleryIndex] += direction;
+
+            // Зацикливаем
+            if (currentSlides[galleryIndex] < 0) {
+                currentSlides[galleryIndex] = totalSlides - 1;
+            } else if (currentSlides[galleryIndex] >= totalSlides) {
+                currentSlides[galleryIndex] = 0;
+            }
+
+            // Применяем трансформацию
+            const offset = -currentSlides[galleryIndex] * 100;
+            images.style.transform = `translateX(${offset}%)`;
+
+            // Обновляем индикаторы
+            updateIndicators(galleryIndex);
+        }
+
+        function goToSlide(galleryIndex, slideIndex) {
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const images = gallery.querySelector('.gallery-images');
+
+            currentSlides[galleryIndex] = slideIndex;
+
+            // Применяем трансформацию
+            const offset = -slideIndex * 100;
+            images.style.transform = `translateX(${offset}%)`;
+
+            // Обновляем индикаторы
+            updateIndicators(galleryIndex);
+        }
+
+        function updateIndicators(galleryIndex) {
+            const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+            const indicators = gallery.querySelectorAll('.gallery-indicator');
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlides[galleryIndex]) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // === LIGHTBOX FUNCTIONALITY ===
+        let currentLightboxGallery = null;
+        let currentLightboxIndex = 0;
+        let lightboxImages = [];
+
+        // Инициализация обработчиков кликов для всех изображений
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для карточек с галереями
+            const galleries = document.querySelectorAll('.product-gallery');
+            galleries.forEach((gallery, galleryIndex) => {
+                const images = gallery.querySelectorAll('.gallery-images img');
+                images.forEach((img, imgIndex) => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openLightbox(galleryIndex, imgIndex, true);
+                    });
+                });
+            });
+
+            // Обработчики для карточек без галерей (обычные изображения)
+            const singleImages = document.querySelectorAll('.product-image > img');
+            singleImages.forEach((img) => {
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openLightbox(null, 0, false, [img.src]);
+                });
+            });
+        });
+
+        function openLightbox(galleryIndex, imageIndex, isGallery, singleImageSrc = null) {
+            const modal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImage');
+
+            if (isGallery && galleryIndex !== null) {
+                // Открываем галерею
+                const gallery = document.querySelectorAll('.product-gallery')[galleryIndex];
+                const images = gallery.querySelectorAll('.gallery-images img');
+                lightboxImages = Array.from(images).map(img => img.src);
+                currentLightboxGallery = galleryIndex;
+                currentLightboxIndex = imageIndex;
+            } else {
+                // Открываем одиночное изображение
+                lightboxImages = singleImageSrc;
+                currentLightboxGallery = null;
+                currentLightboxIndex = 0;
+            }
+
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            modal.classList.add('active');
+            updateLightboxCounter();
+
+            // Блокируем прокрутку страницы
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            lightboxImages = [];
+            currentLightboxGallery = null;
+        }
+
+        function lightboxNavigate(direction) {
+            if (lightboxImages.length <= 1) return;
+
+            currentLightboxIndex += direction;
+
+            // Зацикливаем
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = lightboxImages.length - 1;
+            } else if (currentLightboxIndex >= lightboxImages.length) {
+                currentLightboxIndex = 0;
+            }
+
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = lightboxImages[currentLightboxIndex];
+            updateLightboxCounter();
+        }
+
+        function updateLightboxCounter() {
+            const counter = document.getElementById('lightboxCounter');
+            counter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+        }
+
+        // Обработчики клавиатуры
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightboxModal');
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                lightboxNavigate(-1);
+            } else if (e.key === 'ArrowRight') {
+                lightboxNavigate(1);
+            }
+        });
+
+        // Закрытие по клику на фон
+        document.getElementById('lightboxModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // === SIZES MODAL FUNCTIONALITY ===
+        function openSizesModal(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const modal = document.getElementById('sizesModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSizesModal() {
+            const modal = document.getElementById('sizesModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleOrder() {
+            // Функция для обработки заказа
+            // Будет реализована позже
+            console.log('Заказ оформлен');
+        }
+
+        // Закрытие модального окна размеров по клику на фон
+        document.getElementById('sizesModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSizesModal();
+            }
+        });
+
+        // Закрытие модального окна размеров по клавише Escape
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('sizesModal');
+            if (modal.classList.contains('active') && e.key === 'Escape') {
+                closeSizesModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка сайта */
+header {
+    background: linear-gradient(135deg, #FFB366 0%, #FF9966 100%);
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.logo .tagline {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    padding: 0.5rem 0;
+}
+
+nav a:hover,
+nav a.active {
+    opacity: 0.8;
+    border-bottom: 2px solid white;
+}
+
+/* Главный баннер */
+.hero {
+    background: linear-gradient(135deg, #FFE5CC 0%, #FFDAB9 100%);
+    color: #333;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #B794F6 0%, #9F7AEA 100%);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, #9F7AEA 0%, #8B5CF6 100%);
+}
+
+/* Каталог товаров */
+.catalog {
+    padding: 4rem 0;
+    background: white;
+}
+
+.catalog h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.section-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    border: 1px solid #e0e0e0;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #FFB366;
+}
+
+.product-image {
+    margin-bottom: 1rem;
+}
+
+.product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.placeholder-img {
+    background: linear-gradient(135deg, #FFB366 0%, #FF9966 100%);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+}
+
+.product-card .description {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.product-card .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #FFB366;
+    margin-bottom: 1rem;
+}
+
+.btn-buy {
+    width: 100%;
+    background: linear-gradient(135deg, #B794F6 0%, #9F7AEA 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, #9F7AEA 0%, #8B5CF6 100%);
+}
+
+/* Секция преимуществ */
+.advantages {
+    padding: 4rem 0;
+    background: #f9f9f9;
+}
+
+.advantages h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.advantage-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.advantage-item:hover {
+    border-color: #FFB366;
+    transform: translateY(-3px);
+}
+
+.advantage-item h3 {
+    color: #FFB366;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.advantage-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Подвал */
+footer {
+    background: #2c3e50;
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #FFB366;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #FFB366;
+}
+
+.footer-section p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Страница "О нас" */
+.about-page {
+    background: white;
+    padding: 3rem 0;
+    min-height: calc(100vh - 400px);
+}
+
+.about-page h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about-section {
+    margin-bottom: 3rem;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    color: #FFB366;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #FFB366;
+}
+
+.about-section p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.values-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.values-list li {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative;
+    font-size: 1.05rem;
+}
+
+.values-list li:before {
+    content: "➤";
+    color: #FFB366;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-box {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid #FFB366;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.feature-box h3 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.feature-box p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.contact-info {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+.contact-info strong {
+    color: #FFB366;
+}
+
+/* Категории на главной странице */
+.categories {
+    padding: 4rem 0;
+    background: #f9f9f9;
+}
+
+.categories h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.category-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    text-decoration: none;
+    display: block;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #FFB366;
+}
+
+.category-card h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.category-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.category-link {
+    color: #B794F6;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.category-card:hover .category-link {
+    color: #FFB366;
+}
+
+/* Баннер категории */
+.category-hero {
+    background: linear-gradient(135deg, #FFE5CC 0%, #FFDAB9 100%);
+    color: #333;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.category-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.category-hero p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Подкатегории */
+.subcategories {
+    padding: 3rem 0;
+    background: white;
+}
+
+.subcategories h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.subcategories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.subcategory-card {
+    background: linear-gradient(135deg, #B794F6 0%, #9F7AEA 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.subcategory-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, #9F7AEA 0%, #8B5CF6 100%);
+}
+
+.subcategory-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.subcategory-card p {
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subcategories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .category-hero p {
+        font-size: 1rem;
+    }
+}
