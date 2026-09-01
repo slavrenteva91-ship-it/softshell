@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eva Shoes - SoftShell</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .product-gallery {
@@ -23,7 +26,7 @@
             flex-shrink: 0;
             object-fit: contain;
             aspect-ratio: 3/4;
-            background: #f5f5f5;
+            background: white;
             min-height: 350px;
         }
 
@@ -32,11 +35,58 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #e0e0e0;
+            background: white;
             color: #666;
             font-size: 14px;
         }
 
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .gallery-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .gallery-indicator.active {
+            background: rgba(255, 255, 255, 1);
+        }
 
         /* Модальное окно для просмотра изображений */
         .lightbox-modal {
@@ -279,119 +329,40 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>SoftShell</h1>
-                <p class="tagline">Качественные товары для вас</p>
+                <img src="../images/logos/logo_2.png" alt="SoftShell Logo" class="logo-img">
             </div>
             <nav>
                 <ul>
                     <li><a href="../index.html">Главная</a></li>
-                    <li><a href="../about.html">О нас</a></li>
                     <li><a href="softshell.html">Softshell</a></li>
-                    <li><a href="eva-shoes.html" class="active">Eva shoes</a></li>
                     <li><a href="waterproofs.html">Waterproofs</a></li>
+                    <li><a href="eva-shoes.html" class="active">Eva shoes</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Баннер категории -->
-    <section class="category-hero">
-        <div class="container">
-            <h1>Eva Shoes</h1>
-            <p>Легкая и удобная обувь из инновационного материала EVA</p>
-        </div>
-    </section>
-
     <!-- Подкатегории -->
     <section class="subcategories">
         <div class="container">
-            <h2>Выберите подкатегорию</h2>
             <div class="subcategories-grid">
-                <a href="#without-insulation" class="subcategory-card">
-                    <h3>Без утеплителя</h3>
-                    <p>Легкая обувь для теплого времени года</p>
-                </a>
                 <a href="#insulated" class="subcategory-card">
                     <h3>Утепленные</h3>
                     <p>Теплая обувь с утеплителем для холодной погоды</p>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Без утепления -->
-    <section id="without-insulation" class="catalog">
-        <div class="container">
-            <h2>Обувь Eva без утепления</h2>
-            <div class="section-description">
-                <p><strong>Легкая и комфортная обувь для лета и межсезонья</strong></p>
-                <p>Обувь из инновационного материала EVA (этиленвинилацетат) отличается исключительной легкостью, водонепроницаемостью и долговечностью. Идеально подходит для дачи, сада, пляжа и активного отдыха на природе.</p>
-
-                <h3>Преимущества обуви EVA:</h3>
-                <ul>
-                    <li><strong>Суперлегкая</strong> – практически не ощущается на ноге</li>
-                    <li><strong>100% водонепроницаемая</strong> – защита от воды и грязи</li>
-                    <li><strong>Легко моется</strong> – достаточно ополоснуть водой</li>
-                    <li><strong>Не впитывает запахи</strong> – гигиеничный материал</li>
-                    <li><strong>Морозостойкая</strong> – не трескается при низких температурах</li>
-                    <li><strong>Амортизация</strong> – мягкая подошва снижает нагрузку на суставы</li>
-                </ul>
-            </div>
-
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-gallery" data-gallery="4">
-                            <div class="gallery-images">
-                                <img src="../images/products/boots_withoutInsulation/black1.webp" alt="Сапоги Eva летние - фото 1">
-                                <img src="../images/products/boots_withoutInsulation/black2.webp" alt="Сапоги Eva летние - фото 2">
-                                <img src="../images/products/boots_withoutInsulation/black3.webp" alt="Сапоги Eva летние - фото 3">
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Черные (темно-серые)</h3>
-                    <p class="description">Легкие резиновые сапоги из EVA материала. Водонепроницаемые, удобные для дачи и сада.</p>
-                    <p class="price">15 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-gallery" data-gallery="5">
-                            <div class="gallery-images">
-                                <img src="../images/products/boots_withoutInsulation/red1.webp" alt="Красные - фото 1">
-                                <img src="../images/products/boots_withoutInsulation/red2.webp" alt="Красные - фото 2">
-                                <img src="../images/products/boots_withoutInsulation/red3.webp" alt="Красные - фото 3">
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Красные</h3>
-                    <p class="description">Удобные сабо для дома и улицы. Антискользящая подошва, яркие цвета.</p>
-                    <p class="price">15 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
-                </div>
+                <a href="#without-insulation" class="subcategory-card">
+                    <h3>Без утеплителя</h3>
+                    <p>Легкая обувь для теплого времени года</p>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Утепленные -->
-    <section id="insulated" class="catalog" style="background: #f9f9f9;">
+    <section id="insulated" class="catalog">
         <div class="container">
             <h2>Утепленная обувь Eva</h2>
-            <div class="section-description">
-                <p><strong>Теплая обувь для холодного времени года</strong></p>
-                <p>Утепленная обувь EVA сочетает все преимущества материала EVA с дополнительной теплоизоляцией. Подходит для зимней рыбалки, охоты, работы на улице и активного отдыха в холодное время года.</p>
-
-                <h3>Особенности утепленной обуви:</h3>
-                <ul>
-                    <li><strong>Надежное утепление</strong> – флисовая или меховая подкладка сохраняет тепло</li>
-                    <li><strong>Защита до -30°C</strong> – комфорт даже в сильные морозы</li>
-                    <li><strong>Водонепроницаемость</strong> – полная защита от воды и снега</li>
-                    <li><strong>Легкость</strong> – намного легче традиционной зимней обуви</li>
-                    <li><strong>Нескользящая подошва</strong> – безопасность на льду и снегу</li>
-                    <li><strong>Легко надевать</strong> – широкое голенище для удобства</li>
-                </ul>
-            </div>
+            <button class="btn-info" onclick="openInfoModalInsulated()">Характеристики и описание изделий</button>
 
             <div class="products-grid">
                 <div class="product-card">
@@ -402,12 +373,24 @@
                                 <img src="../images/products/boots_insulated/black2.jpg" alt="Сапоги Eva Winter Pro - фото 2">
                                 <img src="../images/products/boots_insulated/black3.jpg" alt="Сапоги Eva Winter Pro - фото 3">
                             </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(0, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(0, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(0, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 2)"></div>
+                            </div>
                         </div>
                     </div>
                     <h3>Черные</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">22/23</button>
+                        <button class="size-btn" onclick="selectSize(this)">24/25</button>
+                    </div>
                     <p class="description">Зимние сапоги с натуральным мехом внутри. Защита до -30°C, нескользящая подошва.</p>
                     <p class="price">20 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -418,12 +401,24 @@
                                 <img src="../images/products/boots_insulated/red1.webp" alt="Полусапоги Eva Warm - фото 2">
                                 <img src="../images/products/boots_insulated/red2.webp" alt="Полусапоги Eva Warm - фото 3">
                             </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(1, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(1, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(1, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 2)"></div>
+                            </div>
                         </div>
                     </div>
                     <h3>Красные</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">24/25</button>
+                        <button class="size-btn" onclick="selectSize(this)">26/27</button>
+                    </div>
                     <p class="description">Утепленные полусапоги с флисовой подкладкой. Комфорт при температуре до -15°C.</p>
                     <p class="price">20 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -434,16 +429,143 @@
                                 <img src="../images/products/boots_insulated/blue2.webp" alt="Ботинки Eva Snow - фото 2">
                                 <img src="../images/products/boots_insulated/blue3.webp" alt="Ботинки Eva Snow - фото 3">
                             </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(2, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(2, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(2, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 2)"></div>
+                            </div>
                         </div>
                     </div>
                     <h3>Синие</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">22/23</button>
+                        <button class="size-btn" onclick="selectSize(this)">24/25</button>
+                    </div>
                     <p class="description">Зимние ботинки с усиленным утеплителем и высоким голенищем.</p>
                     <p class="price">20 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Без утепления -->
+    <section id="without-insulation" class="catalog" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Обувь Eva без утепления</h2>
+            <button class="btn-info" onclick="openInfoModalUninsulated()">Характеристики и описание изделий</button>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="4">
+                            <div class="gallery-images">
+                                <img src="../images/products/boots_withoutInsulation/black1.webp" alt="Сапоги Eva летние - фото 1">
+                                <img src="../images/products/boots_withoutInsulation/black2.webp" alt="Сапоги Eva летние - фото 2">
+                                <img src="../images/products/boots_withoutInsulation/black3.webp" alt="Сапоги Eva летние - фото 3">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(3, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(3, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(3, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Черные (темно-серые)</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">24/25</button>
+                    </div>
+                    <p class="description">Легкие резиновые сапоги из EVA материала. Водонепроницаемые, удобные для дачи и сада.</p>
+                    <p class="price">15 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно: Характеристики утепленной обуви -->
+    <div id="infoModalInsulated" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalInsulated()">&times;</button>
+            <h2>Характеристики и описание изделий</h2>
+
+            <p>Детские сапоги из ЭВА Nordman Kids со съемным флисовым утеплителем.</p>
+            <p>Материал ЭВА абсолютно не проводит холод, поэтому ноги ребенка всегда будут в тепле.</p>
+
+            <h3>Водонепроницаемость</h3>
+            <p>100% не пропускают воду</p>
+
+            <h3>Функциональность</h3>
+            <p>Съемный флисовый вкладыш легко вынимается — удобен для просушки.</p>
+            <p>Модель отмечена почетным знаком качества «Лучшее – детям» в 2020 году.</p>
+
+            <h3>Температурный режим</h3>
+            <ul>
+                <li>низкая активность от 0°С до -5°С</li>
+                <li>средняя активность от -5°С до -10°С</li>
+                <li>высокая активность от -10°С до -15°С</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Характеристики обуви без утепления -->
+    <div id="infoModalUninsulated" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalUninsulated()">&times;</button>
+            <h2>Характеристики и описание изделий</h2>
+
+            <p>Детские сапоги из ЭВА Nordman Jet.</p>
+            <p>Материал ЭВА абсолютно не проводит холод, поэтому ноги ребенка всегда будут в тепле.</p>
+            <p>Эти сапоги можно носить до 0 градусов. Абсолютно невесомые. Ребенок в таких не устает даже после длительной активной прогулки.</p>
+
+            <h3>Водонепроницаемость</h3>
+            <p>100% не пропускают воду</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Форма заказа -->
+    <div id="orderModal" class="info-modal">
+        <div class="info-modal-content" style="max-width:480px;">
+            <button class="info-modal-close" onclick="closeOrderModal()">&times;</button>
+            <h2>Оформить заказ</h2>
+            <p id="orderProductInfo" class="order-product-info"></p>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" required placeholder="Введите ваше имя">
+                </div>
+                <div class="form-group">
+                    <label>Ваш город</label>
+                    <input type="text" name="city" required placeholder="Введите ваш город">
+                </div>
+                <div class="form-group">
+                    <label>Ваш номер телефона</label>
+                    <input type="tel" name="phone" required placeholder="+382 (___) ___-___">
+                </div>
+                <div class="form-group">
+                    <label>Выберите мессенджер для связи</label>
+                    <select name="messenger" required>
+                        <option value="" disabled selected>Выберите мессенджер</option>
+                        <option value="Viber">Viber</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Telegram">Telegram</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-order-submit">Отправить заказ</button>
+            </form>
+            <div id="orderSuccess" style="display:none; text-align:center; padding:2rem 0;">
+                <p style="color:#6D3FCA; font-size:1.1rem; font-weight:600;">Спасибо! Ваш заказ принят.</p>
+                <p style="color:#666; margin-top:0.5rem;">Мы свяжемся с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Модальное окно для просмотра изображений -->
     <div id="lightboxModal" class="lightbox-modal">
@@ -474,8 +596,105 @@
     </div>
 
     <script>
+        function selectSize(btn) {
+            btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const card = btn.closest('.product-card');
+            const buyBtn = card.querySelector('.btn-buy-now');
+            if (buyBtn) buyBtn.classList.add('active');
+            const errorEl = buyBtn && buyBtn.previousElementSibling;
+            if (errorEl && errorEl.classList.contains('size-error')) errorEl.remove();
+        }
+
+        function handleOrderBtn(btn) {
+            const card = btn.closest('.product-card');
+            const sizeOptions = card.querySelector('.size-options');
+            const selected = sizeOptions && sizeOptions.querySelector('.size-btn.selected');
+            if (!selected) {
+                let errorEl = btn.previousElementSibling;
+                if (!errorEl || !errorEl.classList.contains('size-error')) {
+                    errorEl = document.createElement('span');
+                    errorEl.classList.add('size-error');
+                    btn.parentNode.insertBefore(errorEl, btn);
+                }
+                errorEl.textContent = 'Выберите нужный размер';
+            } else {
+                const productName = card.querySelector('h3').textContent;
+                openOrderModal(productName, selected.textContent);
+            }
+        }
+
+        function openOrderModal(productName, size) {
+            document.getElementById('orderProductInfo').textContent = 'Товар: ' + productName + ', размер: ' + size;
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderSuccess').style.display = 'none';
+            document.getElementById('orderForm').reset();
+            document.getElementById('orderModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        function submitOrder(e) {
+            e.preventDefault();
+
+            // === Настройки Telegram-бота: подставьте свои значения ===
+            const TG_TOKEN = '8924159648:AAFiiopH7BhLYL1Jaf_tMh3K0SDnpwj-1og';
+            const TG_CHAT_ID = '236703853';
+
+            const form = document.getElementById('orderForm');
+            const f = new FormData(form);
+            const text =
+                '🛒 Новый заказ\n\n' +
+                document.getElementById('orderProductInfo').textContent + '\n' +
+                'Имя: ' + f.get('name') + '\n' +
+                'Город: ' + f.get('city') + '\n' +
+                'Телефон: ' + f.get('phone') + '\n' +
+                'Мессенджер: ' + f.get('messenger');
+
+            const btn = form.querySelector('.btn-order-submit');
+            btn.disabled = true;
+
+            fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data.ok) {
+                        form.style.display = 'none';
+                        document.getElementById('orderSuccess').style.display = 'block';
+                    } else {
+                        alert('Не удалось отправить заказ. Позвоните нам или напишите в мессенджер.');
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети. Проверьте подключение и попробуйте ещё раз.');
+                })
+                .finally(function () { btn.disabled = false; });
+        }
+
+        function openInfoModalInsulated() {
+            document.getElementById('infoModalInsulated').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalInsulated() {
+            document.getElementById('infoModalInsulated').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        function openInfoModalUninsulated() {
+            document.getElementById('infoModalUninsulated').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalUninsulated() {
+            document.getElementById('infoModalUninsulated').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         // Хранение текущих индексов слайдов для каждой галереи
-        const currentSlides = [0, 0, 0, 0, 0, 0];
+        const currentSlides = [0, 0, 0, 0];
 
         function changeSlide(galleryIndex, direction, event) {
             if (event) {
@@ -545,6 +764,16 @@
 
         // Инициализация обработчиков кликов для всех изображений
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('orderModal').addEventListener('click', function(e) {
+                if (e.target === this) closeOrderModal();
+            });
+            document.getElementById('infoModalInsulated').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalInsulated();
+            });
+            document.getElementById('infoModalUninsulated').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalUninsulated();
+            });
+
             // Обработчики для карточек с галереями
             const galleries = document.querySelectorAll('.product-gallery');
             galleries.forEach((gallery, galleryIndex) => {

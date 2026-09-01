@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waterproofs - SoftShell</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .product-gallery {
@@ -23,7 +26,7 @@
             flex-shrink: 0;
             object-fit: contain;
             aspect-ratio: 3/4;
-            background: #f5f5f5;
+            background: white;
             min-height: 350px;
         }
 
@@ -32,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #e0e0e0;
+            background: white;
             color: #666;
             font-size: 14px;
         }
@@ -181,6 +184,92 @@
             border-radius: 5px;
         }
 
+        .btn-info {
+            display: block;
+            margin: 0 auto 1.5rem;
+            padding: 12px 40px;
+            min-width: 300px;
+            background: #FFF0E0;
+            color: #B8691A;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-info:hover {
+            background: #FFDAB9;
+            color: #8B4A10;
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+        .info-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .info-modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .info-modal-content h3 {
+            margin-top: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #6D3FCA;
+            font-size: 1rem;
+        }
+        .info-modal-content p, .info-modal-content li {
+            color: #444;
+            line-height: 1.7;
+            font-size: 0.93rem;
+        }
+        .info-modal-content ul {
+            padding-left: 1.2rem;
+            margin: 0.3rem 0;
+        }
+        .info-modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.2s;
+        }
+        .info-modal-close:hover { color: #333; }
+
+        /* Стили для одиночных изображений */
+        .product-image > img {
+            width: 100%;
+            object-fit: contain;
+            aspect-ratio: 3/4;
+            background: white;
+            min-height: 350px;
+        }
+
         /* Курсор для изображений */
         .product-gallery img,
         .product-image img {
@@ -294,41 +383,30 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>SoftShell</h1>
-                <p class="tagline">Качественные товары для вас</p>
+                <img src="../images/logos/logo_2.png" alt="SoftShell Logo" class="logo-img">
             </div>
             <nav>
                 <ul>
                     <li><a href="../index.html">Главная</a></li>
-                    <li><a href="../about.html">О нас</a></li>
                     <li><a href="softshell.html">Softshell</a></li>
-                    <li><a href="eva-shoes.html">Eva shoes</a></li>
                     <li><a href="waterproofs.html" class="active">Waterproofs</a></li>
+                    <li><a href="eva-shoes.html">Eva shoes</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Баннер категории -->
-    <section class="category-hero">
-        <div class="container">
-            <h1>Waterproofs</h1>
-            <p>Водонепроницаемая одежда для максимальной защиты от непогоды</p>
-        </div>
-    </section>
-
     <!-- Подкатегории -->
     <section class="subcategories">
         <div class="container">
-            <h2>Выберите подкатегорию</h2>
             <div class="subcategories-grid">
                 <a href="#overalls" class="subcategory-card">
                     <h3>Комбинезоны (Overalls)</h3>
-                    <p>Полная защита от дождя и ветра</p>
+                    <p>Полная защита ребенка от дождя и ветра</p>
                 </a>
-                <a href="#semi-overalls" class="subcategory-card">
+                <a href="#membrane-semi-overalls" class="subcategory-card">
                     <h3>Полукомбинезоны (Semi-overalls)</h3>
-                    <p>Удобные полукомбинезоны с защитой нижней части тела</p>
+                    <p>Защита нижней части тела от влаги и грязи с регулируемыми лямками</p>
                 </a>
             </div>
         </div>
@@ -338,7 +416,7 @@
     <section id="overalls" class="catalog">
         <div class="container">
             <h2>Водонепроницаемые комбинезоны</h2>
-            <p class="section-description">Полная защита от непогоды для любой активности</p>
+            <button class="btn-info" onclick="openInfoModal()">Характеристики и описание изделий</button>
 
             <div class="products-grid">
                 <div class="product-card">
@@ -360,10 +438,13 @@
                             </div>
                         </div>
                     </div>
-                    <h3>Серо-бежевый</h3>
-                    <p class="description">Профессиональный комбинезон с проклеенными швами и мембраной 10000/10000.</p>
+                    <h3>Серо-коричневый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                    </div>
                     <p class="price">20 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -386,19 +467,63 @@
                         </div>
                     </div>
                     <h3>Джинсовый</h3>
-                    <p class="description">Легкий дождевик-комбинезон для походов и рыбалки. Компактно складывается.</p>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                        <button class="size-btn" onclick="selectSize(this)">98</button>
+                    </div>
                     <p class="price">20 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/products/waterproof_overalls/gray.jpg" alt="Комбинезон серый">
+                    </div>
+                    <h3>Серый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">86</button>
+                    </div>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="5">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_overalls/yellow.jpg" alt="Комбинезон жёлтый - фото 1">
+                                <img src="../images/products/waterproof_overalls/yellow2.jpg" alt="Комбинезон жёлтый - фото 2">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(2, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(2, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(2, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 1)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Жёлтый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                        <button class="size-btn" onclick="selectSize(this)">86</button>
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                        <button class="size-btn" onclick="selectSize(this)">98</button>
+                    </div>
+                    <p class="price">20 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Полукомбинезоны -->
-    <section id="semi-overalls" class="catalog" style="background: #f9f9f9;">
+    <!-- Мембранные полукомбинезоны -->
+    <section id="membrane-semi-overalls" class="catalog" style="background: #f9f9f9;">
         <div class="container">
-            <h2>Водонепроницаемые полукомбинезоны</h2>
-            <p class="section-description">Удобная защита с регулируемыми лямками</p>
+            <h2>Мембранные полукомбинезоны</h2>
+            <button class="btn-info" onclick="openInfoModalMembrane()">Характеристики и описание изделий</button>
 
             <div class="products-grid">
                 <div class="product-card">
@@ -410,20 +535,24 @@
                                 <img src="../images/products/waterproof_semi-overalls/grey-beige3.jpg" alt="Полукомбинезон Fishing Pro - фото 3">
                                 <img src="../images/products/waterproof_semi-overalls/grey-beige4.jpg" alt="Полукомбинезон Fishing Pro - фото 4">
                             </div>
-                            <button class="gallery-nav prev" onclick="changeSlide(2, -1)">&#10094;</button>
-                            <button class="gallery-nav next" onclick="changeSlide(2, 1)">&#10095;</button>
+                            <button class="gallery-nav prev" onclick="changeSlide(3, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(3, 1)">&#10095;</button>
                             <div class="gallery-indicators">
-                                <div class="gallery-indicator active" onclick="goToSlide(2, 0)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(2, 1)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(2, 2)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(2, 3)"></div>
+                                <div class="gallery-indicator active" onclick="goToSlide(3, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 3)"></div>
                             </div>
                         </div>
                     </div>
-                    <h3>Серо-бежевый</h3>
-                    <p class="description">Специально для рыбалки и охоты. Усиленные колени, множество карманов.</p>
+                    <h3>Капучино</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                        <button class="size-btn" onclick="selectSize(this)">110</button>
+                    </div>
                     <p class="price">17 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -435,20 +564,23 @@
                                 <img src="../images/products/waterproof_semi-overalls/jeans3.jpg" alt="Полукомбинезон Work Guard - фото 3">
                                 <img src="../images/products/waterproof_semi-overalls/jeans4.jpg" alt="Полукомбинезон Work Guard - фото 4">
                             </div>
-                            <button class="gallery-nav prev" onclick="changeSlide(3, -1)">&#10094;</button>
-                            <button class="gallery-nav next" onclick="changeSlide(3, 1)">&#10095;</button>
+                            <button class="gallery-nav prev" onclick="changeSlide(4, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(4, 1)">&#10095;</button>
                             <div class="gallery-indicators">
-                                <div class="gallery-indicator active" onclick="goToSlide(3, 0)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(3, 1)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(3, 2)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(3, 3)"></div>
+                                <div class="gallery-indicator active" onclick="goToSlide(4, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 3)"></div>
                             </div>
                         </div>
                     </div>
                     <h3>Джинсовый</h3>
-                    <p class="description">Рабочий полукомбинезон с защитой от влаги и грязи. Высокая износостойкость.</p>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">98</button>
+                    </div>
                     <p class="price">17 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -460,24 +592,266 @@
                                 <img src="../images/products/waterproof_semi-overalls/grey3.jpg" alt="Полукомбинезон Trekking Light - фото 3">
                                 <img src="../images/products/waterproof_semi-overalls/grey4.jpg" alt="Полукомбинезон Trekking Light - фото 4">
                             </div>
-                            <button class="gallery-nav prev" onclick="changeSlide(4, -1)">&#10094;</button>
-                            <button class="gallery-nav next" onclick="changeSlide(4, 1)">&#10095;</button>
+                            <button class="gallery-nav prev" onclick="changeSlide(5, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(5, 1)">&#10095;</button>
                             <div class="gallery-indicators">
-                                <div class="gallery-indicator active" onclick="goToSlide(4, 0)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(4, 1)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(4, 2)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(4, 3)"></div>
+                                <div class="gallery-indicator active" onclick="goToSlide(5, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 3)"></div>
                             </div>
                         </div>
                     </div>
                     <h3>Серый</h3>
-                    <p class="description">Легкий туристический полукомбинезон с вентиляцией и компрессионной упаковкой.</p>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                        <button class="size-btn" onclick="selectSize(this)">86</button>
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                        <button class="size-btn" onclick="selectSize(this)">110</button>
+                    </div>
                     <p class="price">17 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Прорезиненные полукомбинезоны -->
+    <section id="rubber-semi-overalls" class="catalog">
+        <div class="container">
+            <h2>Прорезиненные полукомбинезоны</h2>
+            <button class="btn-info" onclick="openInfoModalRubber()">Характеристики и описание изделий</button>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="6">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/mint.jpg" alt="Полукомбинезон мятный - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/mint2.jpg" alt="Полукомбинезон мятный - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/mint3.jpg" alt="Полукомбинезон мятный - фото 3">
+                                <img src="../images/products/waterproof_semi-overalls/mint4.jpg" alt="Полукомбинезон мятный - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(6, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(6, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(6, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Мятный</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                        <button class="size-btn" onclick="selectSize(this)">104</button>
+                    </div>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="7">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/pistachio.jpg" alt="Полукомбинезон фисташковый - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/pistachio2.jpg" alt="Полукомбинезон фисташковый - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/pistachio3.jpg" alt="Полукомбинезон фисташковый - фото 3">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(7, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(7, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(7, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(7, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(7, 2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Фисташковый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">116</button>
+                    </div>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="8">
+                            <div class="gallery-images">
+                                <img src="../images/products/waterproof_semi-overalls/yellow.jpg" alt="Полукомбинезон жёлтый - фото 1">
+                                <img src="../images/products/waterproof_semi-overalls/yellow2.jpg" alt="Полукомбинезон жёлтый - фото 2">
+                                <img src="../images/products/waterproof_semi-overalls/yellow3.jpg" alt="Полукомбинезон жёлтый - фото 3">
+                                <img src="../images/products/waterproof_semi-overalls/yellow4.jpg" alt="Полукомбинезон жёлтый - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(8, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(8, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(8, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(8, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(8, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(8, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Жёлтый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                        <button class="size-btn" onclick="selectSize(this)">86</button>
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                        <button class="size-btn" onclick="selectSize(this)">98</button>
+                        <button class="size-btn" onclick="selectSize(this)">104</button>
+                    </div>
+                    <p class="price">17 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно с характеристиками комбинезонов -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModal()">&times;</button>
+            <h2>Характеристики и описание изделий</h2>
+
+            <h3>Характеристики:</h3>
+            <p><strong>Бренд:</strong> Smaillook</p>
+            <p><strong>Страна:</strong> Россия</p>
+            <p><strong>Температурный режим:</strong> от +10°C до +20°C</p>
+            <p><strong>Материал:</strong> Мембрана без подкладки и утеплителя. Мембрана — это высокотехнологичный материал, который не пропускает влагу снаружи (дождь, снег), но при этом позволяет коже дышать (выводит испарения).</p>
+            <p><strong>Состав:</strong> 100% полиэстер</p>
+            <p><strong>DWR-покрытие</strong> (Durable Water Repellent) — водоотталкивающее покрытие, которое находится на верхнем слое ткани, заставляя воду скатываться на поверхности, а не впитывать в нее.</p>
+
+            <h3>Особенности модели:</h3>
+            <ul>
+                <li>проклеенные швы</li>
+                <li>светоотражающие элементы</li>
+                <li>капюшон с козырьком</li>
+                <li>утягивающая резинка на спине</li>
+                <li>регулируемые штрипки на пуговицах</li>
+            </ul>
+
+            <h3>Описание товара от производителя:</h3>
+            <p>Подарите своему маленькому исследователю радость безграничных приключений с нашим замечательным мембранным комбинезоном! Представьте, как ваш малыш с восторгом познает мир, не боясь ни капризов погоды, ни грязных луж, ни коварного ветра. Этот комбинезон создан, чтобы дарить комфорт и свободу движения, позволяя ребенку быть собой в любую погоду. Мягкая, но невероятно прочная мембранная ткань словно обнимает малыша, надежно защищая от ветра и дождя. Мы позаботились о каждой детали: проклеенные швы словно неприступная крепость, не дадут ни единой капле просочиться внутрь, а капюшон с козырьком станет верным щитом от непогоды. Безопасность вашего сокровища – наш приоритет! Светоотражающие элементы, словно маленькие звездочки, будут сиять в темноте, делая вашего малыша заметным и защищенным. А еще мы знаем, как важна свобода движений! Утягивающая резинка на спинке деликатно подчеркнет фигурку, не сковывая ни одного шага, а регулируемые штрипки на пуговицах надежно зафиксируют штанины, не позволяя грязи и снегу проникнуть внутрь. Этот комбинезон создан для активных малышей ростом 80–98 см, готовых покорять мир! Он идеально подходит для игр на детской площадке, прогулок в парке и лесу, катания с горок и даже для самых смелых экспериментов с лужами! Позвольте своему ребенку наслаждаться каждым моментом, а мы позаботимся о его комфорте и безопасности. С нашим мембранным комбинезоном ваш малыш будет самым счастливым исследователем в любую погоду!</p>
+
+            <h3>Область применения:</h3>
+            <p>Комбинезон обеспечит свободу на детской площадке, позволяя кататься с мокрой горки и играть в песочнице без ограничений. Приключения в лесу станут еще увлекательнее, благодаря защите от колючек, влажной земли и дополнительной защите от клещей. Бегать по лужам и плескаться в брызгах – одно удовольствие, оставаясь сухим и комфортным. Велосипедные и самокатные прогулки принесут больше радости, благодаря защите от ветра и небольшого дождя. Забудьте о сменной одежде! Этот комбинезон легко комбинируется с различными слоями одежды и защитит от неожиданных погодных сюрпризов. С ним вы сможете наслаждаться каждой минутой, проведенной на свежем воздухе, не беспокоясь о комфорте и здоровье вашего ребенка.</p>
+
+            <h3>Стирка:</h3>
+            <p>Стирайте мембранную одежду только тогда, когда это действительно необходимо. Частая стирка может сократить срок службы мембраны и DWR-покрытия. Используйте специальные средства для мембранных тканей. Обычные стиральные порошки содержат отбеливатели, энзимы и отдушки, которые могут повредить мембрану, забить поры и ухудшить DWR-покрытие. Не используйте отбеливатель, кондиционер для белья или смягчитель ткани — эти средства могут повредить мембрану и ухудшить DWR-покрытие. Используйте деликатный режим стирки (или режим для спортивной одежды / ручная стирка). Температура воды не должна превышать 30°C. Выберите минимальную скорость отжима или отключите отжим вовсе — сильный отжим может повредить мембрану.</p>
+
+            <h3>Сушка:</h3>
+            <p>Сушка на воздухе (предпочтительно). Выверните изделие на лицевую сторону. Повесьте изделие на плечики в хорошо проветриваемом месте, вдали от прямых солнечных лучей и источников тепла (например, батарей). Дайте изделию полностью высохнуть. Машинная сушка — запрещена.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно с характеристиками мембранных полукомбинезонов -->
+    <div id="infoModalMembrane" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalMembrane()">&times;</button>
+            <h2>Характеристики и описание изделий</h2>
+
+            <h3>Характеристики:</h3>
+            <p><strong>Бренд:</strong> Smaillook</p>
+            <p><strong>Страна:</strong> Россия</p>
+            <p><strong>Температурный режим:</strong> от +10°C до +20°C</p>
+            <p><strong>Материал:</strong> Мембрана без подкладки и утеплителя. Мембрана — это высокотехнологичный материал, который не пропускает влагу снаружи (дождь, снег), но при этом позволяет коже дышать (выводит испарения).</p>
+            <p><strong>Состав:</strong> 100% полиэстер</p>
+            <p><strong>DWR-покрытие</strong> (Durable Water Repellent) — водоотталкивающее покрытие, которое находится на верхнем слое ткани, заставляя воду скатываться на поверхности, а не впитывать в неё.</p>
+
+            <h3>Особенности модели:</h3>
+            <ul>
+                <li>проклеенные швы</li>
+                <li>светоотражающие элементы</li>
+                <li>застёжки фастекс</li>
+                <li>регулируемые лямки</li>
+                <li>утягивающая резинка на спине</li>
+                <li>фиксирующие штрипки</li>
+            </ul>
+
+            <h3>Описание товара:</h3>
+            <p>Детский полукомбинезон из мембранной ткани — это больше, чем просто одежда, это союзник в борьбе с непогодой. Мембрана — высокотехнологичная ткань, обеспечивающая надёжную защиту от дождя, снега и ветра. Наш полукомбинезон изготовлен из мембранной ткани, он дышащий — то есть защищает от ветра и эффективно отводит влагу от тела, предотвращая перегрев и потливость. Благодаря этому ребёнок остаётся сухим и чувствует себя комфортно в любую погоду. Этот полукомбинезон без утеплителя и подкладки — это лёгкость и свобода движений! Идеально подходит для ношения поверх другой одежды в прохладную и дождливую погоду, а также защитит основной слой одежды от загрязнений. Он прекрасно подходит для активных детей.</p>
+
+            <h3>Область применения:</h3>
+            <p>Полукомбинезон обеспечит свободу на детской площадке, позволяя кататься с мокрой горки и играть в песочнице без ограничений. Приключения в лесу станут ещё увлекательнее благодаря защите от колючек, влажной земли и дополнительной защите от клещей. Бегать по лужам и плескаться в брызгах — одно удовольствие, оставаясь сухим и комфортным. Велосипедные и самокатные прогулки принесут больше радости благодаря защите от ветра и небольшого дождя. Забудьте о сменной одежде! Этот полукомбинезон легко комбинируется с различными слоями одежды и защитит от неожиданных погодных сюрпризов.</p>
+
+            <h3>Стирка:</h3>
+            <p>Стирайте мембранную одежду только тогда, когда это действительно необходимо. Частая стирка может сократить срок службы мембраны и DWR-покрытия. Используйте специальные средства для мембранных тканей — обычные стиральные порошки содержат отбеливатели, энзимы и отдушки, которые могут повредить мембрану, забить поры и ухудшить DWR-покрытие. Не используйте отбеливатель, кондиционер для белья или смягчитель ткани. Используйте деликатный режим стирки (или режим для спортивной одежды / ручной режим). Температура воды не должна превышать 30°C. Выберите минимальную скорость отжима или отключите отжим вовсе — сильный отжим может повредить мембрану.</p>
+
+            <h3>Сушка:</h3>
+            <p>Сушка на воздухе (предпочтительно). Выверните изделие на лицевую сторону. Повесьте изделие на плечики в хорошо проветриваемом месте, вдали от прямых солнечных лучей и источников тепла (например, батарей). Дайте изделию полностью высохнуть. Машинная сушка запрещена.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно с характеристиками прорезиненных полукомбинезонов -->
+    <div id="infoModalRubber" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalRubber()">&times;</button>
+            <h2>Характеристики и описание изделий</h2>
+
+            <h3>Характеристики:</h3>
+            <p><strong>Бренд:</strong> Smaillook</p>
+            <p><strong>Страна:</strong> Россия</p>
+            <p><strong>Температурный режим:</strong> Ткань очень прочная и не боится морозов, рассчитана до -25°С, что позволяет использовать этот полукомбинезон из ПВХ даже в самые холодные зимние дни. При этом он не имеет собственного утепляющего слоя, поэтому температурный режим напрямую зависит от поддевы. В период года (примерно от -25°С до 0°С) полукомбинезон надевают на поверхность зимнего комбинезона или другой теплой одежды, чтобы сохранить тепло и защитить ребенка от влаги. Когда станет теплее (от 0°С до +10°С), достаточно будет демисезонного слоя под ним. Главное — ориентироваться на погоду и активность малыша.</p>
+            <p><strong>Материал:</strong> Поливинилхлорид (ПВХ) — это прочный синтетический полимер, отличающийся высокой надёжностью и повседневностью. Благодаря плотной структуре и стойкости к агрессивным внешним воздействиям, изделия из ПВХ надёжно защищают от влаги и загрязнений, при этом легко очищаются и сохраняют свою первоначальную форму даже при активной эксплуатации.</p>
+            <p><strong>Состав:</strong> 85% ПВХ; 15% полиэстер</p>
+
+            <h3>Описание товара от производителя:</h3>
+            <p>Детский полукомбинезон из ПВХ в 17 ярких насыщенных цветах — отличное решение для прогулок в дождливую и слякотную погоду. Проклеенные швы не пропускают воду даже при активных играх, светоотражающие элементы помогают быть заметным в пасмурные дни, а застёжки-фастекс и регулируемые лямки позволяют быстро подогнать модель по росту ребёнка. Эластичная резинка на спинке помогает полукомбинезону сидеть аккуратно и не сковывать движения, что особенно важно при беге, прыжках и катании с горки, фиксирующие штрипки замыкают низ штанин, сохраняя ножки в тепле и сухости. Благодаря плотному материалу и простоте ухода этот полукомбинезон станет незаменимым помощником в гардеробе вашего малыша.</p>
+
+            <h3>Область применения:</h3>
+            <p>Этот полукомбинезон подходит для прогулок по лужам после дождя, исследований мокрых детских площадок, катания с горок во время таяния снега, посиделок в сырой песочнице, походов в лес за грибами, прыжков по лужам и катания на самокате по мокрым дорогам, а также для весёлых игр на мокрой траве или даже сидения прямо в луже. Также его можно надевать в моросящий дождь, при мокром снеге, во время осеннего ветра или весенней слякоти, а также на прогулках у влажных берегов водоёмов или по влажным лугам.</p>
+
+            <h3>Стирка:</h3>
+            <p>Все загрязнения легко удаляются мокрой губкой, струёй воды или влажной салфеткой. Чтобы сохранить полезные свойства полукомбинезона и продлить срок его службы, избегайте машинной стирки. Если вещь сильно загрязнена, можно замочить её в тёплом мыльном растворе не выше 30°С, а затем аккуратно протереть мягкой губкой. Используйте только мягкие моющие средства без агрессивного химического состава. Не стоит стирать полукомбинезон слишком часто — делайте это только при появлении пятен или неприятного запаха.</p>
+
+            <h3>Сушка:</h3>
+            <p>После стирки сначала просушите на открытом воздухе с изнаночной стороны, а затем выверните и дайте досохнуть полностью, при этом обязательно избегайте воздействия прямых солнечных лучей и не оставляйте полукомбинезон рядом с горячими батареями. Обязательно вывесите его на балкон или в хорошо проветриваемом помещении. Перед первым использованием рекомендуется проветрить полукомбинезон, повесив его на плечики, — при хранении в закрытом виде ткань может приобрести характерный запах, который быстро исчезает на свежем воздухе.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Форма заказа -->
+    <div id="orderModal" class="info-modal">
+        <div class="info-modal-content" style="max-width:480px;">
+            <button class="info-modal-close" onclick="closeOrderModal()">&times;</button>
+            <h2>Оформить заказ</h2>
+            <p id="orderProductInfo" class="order-product-info"></p>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" required placeholder="Введите ваше имя">
+                </div>
+                <div class="form-group">
+                    <label>Ваш город</label>
+                    <input type="text" name="city" required placeholder="Введите ваш город">
+                </div>
+                <div class="form-group">
+                    <label>Ваш номер телефона</label>
+                    <input type="tel" name="phone" required placeholder="+382 (___) ___-___">
+                </div>
+                <div class="form-group">
+                    <label>Выберите мессенджер для связи</label>
+                    <select name="messenger" required>
+                        <option value="" disabled selected>Выберите мессенджер</option>
+                        <option value="Viber">Viber</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Telegram">Telegram</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-order-submit">Отправить заказ</button>
+            </form>
+            <div id="orderSuccess" style="display:none; text-align:center; padding:2rem 0;">
+                <p style="color:#6D3FCA; font-size:1.1rem; font-weight:600;">Спасибо! Ваш заказ принят.</p>
+                <p style="color:#666; margin-top:0.5rem;">Мы свяжемся с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Модальное окно для просмотра изображений -->
     <div id="lightboxModal" class="lightbox-modal">
@@ -492,15 +866,141 @@
         </div>
     </div>
 
-    <!-- Модальное окно для информации о размерах -->
-    <div id="sizesModal" class="sizes-modal">
+    <!-- Модальные окна для информации о размерах -->
+    <div id="sizesModal0" class="sizes-modal">
         <div class="sizes-modal-content">
-            <button class="sizes-modal-close" onclick="closeSizesModal()">&times;</button>
-            <h2>Доступные размеры</h2>
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal0')">&times;</button>
+            <h2>Комбинезон серо-бежевый</h2>
             <p>У нас в наличии следующие размеры этой модели:</p>
             <div class="sizes-list">
-                <p><strong>Размеры:</strong> S, M, L, XL, XXL</p>
-                <p><strong>Цвет:</strong> В ассортименте</p>
+                <p><strong>Размеры:</strong> 80</p>
+                <p><strong>Цвет:</strong> Серо-бежевый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal1" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal1')">&times;</button>
+            <h2>Комбинезон джинсовый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> 98</p>
+                <p><strong>Цвет:</strong> Джинсовый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal2" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal2')">&times;</button>
+            <h2>Полукомбинезон серо-бежевый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> 92</p>
+                <p><strong>Цвет:</strong> Серо-бежевый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal3" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal3')">&times;</button>
+            <h2>Полукомбинезон джинсовый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> 98</p>
+                <p><strong>Цвет:</strong> Джинсовый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal4" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal4')">&times;</button>
+            <h2>Полукомбинезон серый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> 80, 86, 92, 110</p>
+                <p><strong>Цвет:</strong> Серый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal5" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal5')">&times;</button>
+            <h2>Комбинезон серый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> </p>
+                <p><strong>Цвет:</strong> Серый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal7" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal7')">&times;</button>
+            <h2>Полукомбинезон мятный</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> </p>
+                <p><strong>Цвет:</strong> Мятный</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal8" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal8')">&times;</button>
+            <h2>Полукомбинезон фисташковый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> </p>
+                <p><strong>Цвет:</strong> Фисташковый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal9" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal9')">&times;</button>
+            <h2>Полукомбинезон жёлтый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> </p>
+                <p><strong>Цвет:</strong> Жёлтый</p>
+                <p><strong>Срок доставки:</strong> 1-3 дня</p>
+            </div>
+            <button class="btn-order" onclick="handleOrder()">Заказать</button>
+        </div>
+    </div>
+
+    <div id="sizesModal6" class="sizes-modal">
+        <div class="sizes-modal-content">
+            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal6')">&times;</button>
+            <h2>Комбинезон жёлтый</h2>
+            <p>У нас в наличии следующие размеры этой модели:</p>
+            <div class="sizes-list">
+                <p><strong>Размеры:</strong> </p>
+                <p><strong>Цвет:</strong> Жёлтый</p>
                 <p><strong>Срок доставки:</strong> 1-3 дня</p>
             </div>
             <button class="btn-order" onclick="handleOrder()">Заказать</button>
@@ -508,6 +1008,128 @@
     </div>
 
     <script>
+        function openInfoModalMembrane() {
+            document.getElementById('infoModalMembrane').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalMembrane() {
+            document.getElementById('infoModalMembrane').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('infoModalMembrane').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalMembrane();
+            });
+        });
+
+        function openInfoModalRubber() {
+            document.getElementById('infoModalRubber').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalRubber() {
+            document.getElementById('infoModalRubber').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('infoModalRubber').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalRubber();
+            });
+        });
+
+        function openInfoModal() {
+            document.getElementById('infoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('infoModal').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModal();
+            });
+        });
+
+        function selectSize(btn) {
+            btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const card = btn.closest('.product-card');
+            const buyBtn = card.querySelector('.btn-buy-now');
+            if (buyBtn) buyBtn.classList.add('active');
+            const errorEl = buyBtn && buyBtn.previousElementSibling;
+            if (errorEl && errorEl.classList.contains('size-error')) errorEl.remove();
+        }
+
+        function handleOrderBtn(btn) {
+            const card = btn.closest('.product-card');
+            const sizeOptions = card.querySelector('.size-options');
+            const selected = sizeOptions && sizeOptions.querySelector('.size-btn.selected');
+            if (!selected) {
+                let errorEl = btn.previousElementSibling;
+                if (!errorEl || !errorEl.classList.contains('size-error')) {
+                    errorEl = document.createElement('span');
+                    errorEl.classList.add('size-error');
+                    btn.parentNode.insertBefore(errorEl, btn);
+                }
+                errorEl.textContent = 'Выберите нужный размер';
+            } else {
+                const productName = card.querySelector('h3').textContent;
+                openOrderModal(productName, selected.textContent);
+            }
+        }
+
+        function openOrderModal(productName, size) {
+            document.getElementById('orderProductInfo').textContent = 'Товар: ' + productName + ', размер: ' + size;
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderSuccess').style.display = 'none';
+            document.getElementById('orderForm').reset();
+            document.getElementById('orderModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        function submitOrder(e) {
+            e.preventDefault();
+
+            // === Настройки Telegram-бота: подставьте свои значения ===
+            const TG_TOKEN = '8924159648:AAFiiopH7BhLYL1Jaf_tMh3K0SDnpwj-1og';
+            const TG_CHAT_ID = '236703853';
+
+            const form = document.getElementById('orderForm');
+            const f = new FormData(form);
+            const text =
+                '🛒 Новый заказ\n\n' +
+                document.getElementById('orderProductInfo').textContent + '\n' +
+                'Имя: ' + f.get('name') + '\n' +
+                'Город: ' + f.get('city') + '\n' +
+                'Телефон: ' + f.get('phone') + '\n' +
+                'Мессенджер: ' + f.get('messenger');
+
+            const btn = form.querySelector('.btn-order-submit');
+            btn.disabled = true;
+
+            fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data.ok) {
+                        form.style.display = 'none';
+                        document.getElementById('orderSuccess').style.display = 'block';
+                    } else {
+                        alert('Не удалось отправить заказ. Позвоните нам или напишите в мессенджер.');
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети. Проверьте подключение и попробуйте ещё раз.');
+                })
+                .finally(function () { btn.disabled = false; });
+        }
+
         // Хранение текущих индексов слайдов для каждой галереи
         const currentSlides = [];
 
@@ -571,6 +1193,10 @@
 
         // Инициализация обработчиков кликов для всех изображений
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('orderModal').addEventListener('click', function(e) {
+                if (e.target === this) closeOrderModal();
+            });
+
             // Обработчики для карточек с галереями
             const galleries = document.querySelectorAll('.product-gallery');
             galleries.forEach((gallery, galleryIndex) => {
@@ -671,16 +1297,14 @@
         });
 
         // === SIZES MODAL FUNCTIONALITY ===
-        function openSizesModal(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            const modal = document.getElementById('sizesModal');
+        function openSizesModal(modalId) {
+            const modal = document.getElementById(modalId);
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeSizesModal() {
-            const modal = document.getElementById('sizesModal');
+        function closeSizesModal(modalId) {
+            const modal = document.getElementById(modalId);
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
@@ -691,18 +1315,21 @@
             console.log('Заказ оформлен');
         }
 
-        // Закрытие модального окна размеров по клику на фон
-        document.getElementById('sizesModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeSizesModal();
-            }
+        // Закрытие модальных окон размеров по клику на фон
+        document.querySelectorAll('.sizes-modal').forEach(function(modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeSizesModal(this.id);
+                }
+            });
         });
 
         // Закрытие модального окна размеров по клавише Escape
         document.addEventListener('keydown', function(e) {
-            const modal = document.getElementById('sizesModal');
-            if (modal.classList.contains('active') && e.key === 'Escape') {
-                closeSizesModal();
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.sizes-modal.active').forEach(function(modal) {
+                    closeSizesModal(modal.id);
+                });
             }
         });
     </script>

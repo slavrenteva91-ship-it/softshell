@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Softshell - SoftShell</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
         .product-gallery {
             position: relative;
             width: 100%;
+            height: 400px;
             overflow: hidden;
         }
 
         .gallery-images {
             display: flex;
+            height: 100%;
             transition: transform 0.3s ease-in-out;
         }
 
@@ -22,9 +27,8 @@
             width: 100%;
             flex-shrink: 0;
             object-fit: contain;
-            aspect-ratio: 3/4;
-            background: #f5f5f5;
-            min-height: 350px;
+            height: 400px;
+            background: white;
         }
 
         .gallery-images .placeholder-img {
@@ -51,7 +55,7 @@
             transition: background 0.3s;
         }
 
-        .gallery-nav:hover {
+        .gallery-nav:hover { -
             background: rgba(0, 0, 0, 0.7);
         }
 
@@ -191,9 +195,8 @@
         .product-image > img {
             width: 100%;
             object-fit: contain;
-            aspect-ratio: 3/4;
-            background: #f5f5f5;
-            min-height: 350px;
+            height: 400px;
+            background: white;
         }
 
         /* Модальное окно для размеров */
@@ -303,81 +306,43 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>SoftShell</h1>
-                <p class="tagline">Качественные товары для вас</p>
+                <img src="../images/logos/logo_2.png" alt="SoftShell Logo" class="logo-img">
             </div>
             <nav>
                 <ul>
                     <li><a href="../index.html">Главная</a></li>
-                    <li><a href="../about.html">О нас</a></li>
                     <li><a href="softshell.html" class="active">Softshell</a></li>
-                    <li><a href="eva-shoes.html">Eva shoes</a></li>
                     <li><a href="waterproofs.html">Waterproofs</a></li>
+                    <li><a href="eva-shoes.html">Eva shoes</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Баннер категории -->
-    <section class="category-hero">
-        <div class="container">
-            <h1>Softshell</h1>
-            <p>Инновационная одежда для активного отдыха и повседневной носки</p>
-        </div>
-    </section>
-
     <!-- Подкатегории -->
     <section class="subcategories">
         <div class="container">
-            <h2>Выберите подкатегорию</h2>
             <div class="subcategories-grid">
-                <a href="#jackets" class="subcategory-card">
-                    <h3>Куртки (Jackets)</h3>
-                    <p>Стильные и функциональные куртки из Softshell материала</p>
-                </a>
                 <a href="#overalls" class="subcategory-card">
                     <h3>Комбинезоны (Overalls)</h3>
-                    <p>Удобные комбинезоны для максимальной защиты</p>
+                    <p>Удобные комбинезоны из софтшелла на флисе для максимальной защиты ребенка от ветра, дождя и грязи</p>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Куртки -->
-    <section id="jackets" class="catalog">
-        <div class="container">
-            <h2>Куртки Softshell</h2>
-            <p class="section-description">Легкие, дышащие и водоотталкивающие куртки</p>
-
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/products/Jackets/pink.jpg" alt="Куртка Softshell Classic">
-                    </div>
-                    <h3>Розовая</h3>
-                    <p class="description">Классическая модель с защитой от ветра и влаги. Идеальна для активного отдыха.</p>
-                    <p class="price">18 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/products/Jackets/green.jpg" alt="Куртка Softshell Pro">
-                    </div>
-                    <h3>Зеленая</h3>
-                    <p class="description">Профессиональная модель с усиленной защитой и дополнительными карманами.</p>
-                    <p class="price">18 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
-                </div>
+                <a href="#jackets" class="subcategory-card">
+                    <h3>Куртки (Jackets)</h3>
+                    <p>Водоотталкивающие функциональные куртки-парки из софтшелла на флисе для защиты ребенка от дождя и ветра</p>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Комбинезоны -->
-    <section id="overalls" class="catalog" style="background: #f9f9f9;">
+    <section id="overalls" class="catalog">
         <div class="container">
             <h2>Комбинезоны Softshell</h2>
-            <p class="section-description">Полная защита и свобода движений</p>
+            <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                <button class="btn-info" style="margin:0;" onclick="openInfoModalOveralls()">Характеристики и описание изделий</button>
+                <button class="btn-info" style="margin:0;" onclick="openSizeTableOveralls()">Таблица размеров</button>
+            </div>
 
             <div class="products-grid">
                 <div class="product-card">
@@ -388,29 +353,50 @@
                                 <img src="../images/products/overalls_softshell/violet1.webp" alt="Комбинезон Softshell Winter - фото 2">
                                 <img src="../images/products/overalls_softshell/violet2.webp" alt="Комбинезон Softshell Winter - фото 3">
                             </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(0, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(0, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(0, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(0, 2)"></div>
+                            </div>
                         </div>
                     </div>
-                    <h3>Комбинезон Softshell Winter</h3>
-                    <p class="description">Утепленный комбинезон для холодного времени года с водонепроницаемым покрытием.</p>
+                    <h3>Фиолетовый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">116</button>
+                    </div>
                     <p class="price">30 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
                         <div class="product-gallery" data-gallery="1">
                             <div class="gallery-images">
-                                <img src="../images/products/overalls_softshell/brown1.jpg" alt="Комбинезон Softshell Active - фото 1">
-                                <img src="../images/products/overalls_softshell/brown2.jpg" alt="Комбинезон Softshell Active - фото 2">
-                                <img src="../images/products/overalls_softshell/brown3.jpg" alt="Комбинезон Softshell Active - фото 3">
-                                <img src="../images/products/overalls_softshell/brown4.jpg" alt="Комбинезон Softshell Active - фото 4">
+                                <img src="../images/products/overalls_softshell/brown5.jpg" alt="Комбинезон Softshell Коричневый - фото 1">
+                                <img src="../images/products/overalls_softshell/brown6.jpg" alt="Комбинезон Softshell Коричневый - фото 2">
+                                <img src="../images/products/overalls_softshell/brown7.jpg" alt="Комбинезон Softshell Коричневый - фото 3">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(1, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(1, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(1, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(1, 2)"></div>
                             </div>
                         </div>
                     </div>
-                    <h3>Комбинезон Softshell Active</h3>
-                    <p class="description">Для активных видов спорта. Легкий, дышащий, с отличной терморегуляцией.</p>
+                    <h3>Коричневый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">116</button>
+                        <button class="size-btn" onclick="selectSize(this)">122</button>
+                        <button class="size-btn" onclick="selectSize(this)">128</button>
+                    </div>
                     <p class="price">30 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
@@ -421,26 +407,284 @@
                                 <img src="../images/products/overalls_softshell/green2.jpg" alt="Комбинезон Softshell Kids - фото 2">
                                 <img src="../images/products/overalls_softshell/green3.jpg" alt="Комбинезон Softshell Kids - фото 3">
                             </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(2, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(2, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(2, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(2, 2)"></div>
+                            </div>
                         </div>
                     </div>
-                    <h3>Комбинезон Softshell Kids</h3>
-                    <p class="description">Детский комбинезон с яркими расцветками и усиленной защитой.</p>
+                    <h3>Салатовый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">98</button>
+                        <button class="size-btn" onclick="selectSize(this)">116</button>
+                    </div>
                     <p class="price">30 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="../images/products/overalls_softshell/black1.jpg" alt="Комбинезон Softshell Black">
+                        <div class="product-gallery" data-gallery="3">
+                            <div class="gallery-images">
+                                <img src="../images/products/overalls_softshell/black1.jpg" alt="Комбинезон Softshell Черный - фото 1">
+                                <img src="../images/products/overalls_softshell/black2.jpg" alt="Комбинезон Softshell Черный - фото 2">
+                                <img src="../images/products/overalls_softshell/black3.jpg" alt="Комбинезон Softshell Черный - фото 3">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(3, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(3, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(3, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(3, 2)"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3>Комбинезон Softshell Black</h3>
-                    <p class="description">Классический черный комбинезон с отличной защитой от непогоды.</p>
+                    <h3>Черный</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">86</button>
+                    </div>
                     <p class="price">30 €</p>
-                    <button class="btn-buy" onclick="openSizesModal(event)">Узнать размеры в наличии</button>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="4">
+                            <div class="gallery-images">
+                                <img src="../images/products/overalls_softshell/light-green.jpg" alt="Комбинезон Softshell Лайм с черным - фото 1">
+                                <img src="../images/products/overalls_softshell/light-green2.jpg" alt="Комбинезон Softshell Лайм с черным - фото 2">
+                                <img src="../images/products/overalls_softshell/light-green3.jpg" alt="Комбинезон Softshell Лайм с черным - фото 3">
+                                <img src="../images/products/overalls_softshell/light-green4.jpg" alt="Комбинезон Softshell Лайм с черным - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(4, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(4, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(4, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(4, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Лайм с черным</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                        <button class="size-btn" onclick="selectSize(this)">92</button>
+                    </div>
+                    <p class="price">30 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="5">
+                            <div class="gallery-images">
+                                <img src="../images/products/overalls_softshell/haki1.jpg" alt="Комбинезон Softshell Хаки - фото 1">
+                                <img src="../images/products/overalls_softshell/haki2.jpg" alt="Комбинезон Softshell Хаки - фото 2">
+                                <img src="../images/products/overalls_softshell/haki3.jpg" alt="Комбинезон Softshell Хаки - фото 3">
+                                <img src="../images/products/overalls_softshell/haki4.jpg" alt="Комбинезон Softshell Хаки - фото 4">
+                                <img src="../images/products/overalls_softshell/haki5.jpg" alt="Комбинезон Softshell Хаки - фото 5">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(5, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(5, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(5, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 3)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 4)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Хаки</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">80</button>
+                    </div>
+                    <p class="price">30 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="6">
+                            <div class="gallery-images">
+                                <img src="../images/products/overalls_softshell/lilac1.jpg" alt="Комбинезон Softshell Сиреневый - фото 1">
+                                <img src="../images/products/overalls_softshell/lilac2.jpg" alt="Комбинезон Softshell Сиреневый - фото 2">
+                                <img src="../images/products/overalls_softshell/lilac3.jpg" alt="Комбинезон Softshell Сиреневый - фото 3">
+                                <img src="../images/products/overalls_softshell/lilac4.jpg" alt="Комбинезон Softshell Сиреневый - фото 4">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(6, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(6, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(6, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 3)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Сиреневый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">110</button>
+                    </div>
+                    <p class="price">30 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Куртки -->
+    <section id="jackets" class="catalog" style="background: #f9f9f9;">
+        <div class="container">
+            <h2>Куртки Softshell</h2>
+            <button class="btn-info" onclick="openInfoModalJackets()">Характеристики и описание изделий</button>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/products/Jackets/pink.jpg" alt="Куртка Softshell Classic">
+                    </div>
+                    <h3>Розовая</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">110</button>
+                    </div>
+                    <p class="price">18 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../images/products/Jackets/green.jpg" alt="Куртка Softshell Pro">
+                    </div>
+                    <h3>Зеленая</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">104</button>
+                    </div>
+                    <p class="price">18 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно: Таблица размеров комбинезонов -->
+    <div id="sizeTableOveralls" class="info-modal">
+        <div class="info-modal-content" style="max-width:95%; width:auto; padding:20px;">
+            <button class="info-modal-close" onclick="closeSizeTableOveralls()">&times;</button>
+            <div style="text-align:center;">
+                <img src="../images/products/overalls_softshell/table_sizes3.png" alt="Таблица размеров" style="max-height:80vh; max-width:100%; object-fit:contain;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Характеристики комбинезонов -->
+    <div id="infoModalOveralls" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalOveralls()">&times;</button>
+            <h2>Комбинезоны Softshell</h2>
+
+            <h3>Характеристики:</h3>
+            <p><strong>Бренд:</strong> Smaillook</p>
+            <p><strong>Страна:</strong> Россия</p>
+            <p><strong>Температурный режим:</strong> Рекомендуемый температурный режим для верхней одежды из Softshell: от 0°С до +15°С. Но важно помнить, что на температурный режим влияют особенности климата и одежды, которую Вы надеваете под комбинезон из Softshell.</p>
+            <p><strong>Материал:</strong> SoftShell — это многослойная ткань с теплоизолирующими, ветрозащитными, водонепроницаемыми и паропроницаемыми свойствами.</p>
+            <p><strong>Структура:</strong> Наружный слой представляет собой плотную, ветрозащитную эластичную ткань со специальной DWR-пропиткой от влаги. Затем идёт сетчатая мембрана, которая пропускает воздух и влагу изнутри, но задерживает её снаружи. Внутренний слой — это мягкий флис с недлинным и очень густым ворсом.</p>
+            <p><strong>Состав:</strong> 100% полиэстер</p>
+            <p><strong>DWR-покрытие</strong> (Durable Water Repellent) — водоотталкивающее покрытие, которое находится на верхнем слое ткани, заставляя воду скатываться на поверхности, а не впитывать в неё.</p>
+
+            <h3>Особенности модели:</h3>
+            <ul>
+                <li>светоотражающие элементы</li>
+                <li>капюшон на кнопках</li>
+                <li>утягивающая резинка на спине</li>
+                <li>1 карман на молнии</li>
+                <li>регулируемые тканевые штрипки</li>
+            </ul>
+
+            <h3>Описание товара:</h3>
+            <p>Детский комбинезон из ткани софтшелл — идеальное решение для активных прогулок, ведь он отлично защищает от ветра и влаги, оставаясь при этом дышащим и комфортным. Капюшон на кнопках легко снимается, позволяя подобрать оптимальный вариант для любой погоды, а светоотражающие элементы добавляют безопасности при недостаточном освещении. Благодаря утягивающей резинке на спине комбинезон хорошо садится по фигуре, не стесняя движения малыша. Практичный карман на молнии пригодится для хранения небольших вещей или любимых сокровищ, а регулируемые тканевые штрипки предотвращают задирание штанин, обеспечивая дополнительный комфорт во время активных игр и прогулок.</p>
+
+            <h3>Область применения:</h3>
+            <p>Этот комбинезон из ткани софтшелл идеально подходит для моросящего дождя в городе, весёлых прогулок в ветреную погоду и активных игр на природе. Его можно носить во время катания на горке, прыжков по лужам или увлекательных походов по лесным тропам, чтобы ребёнок оставался в центре внимания. При наличии поддевы в виде термобелья или флисового костюма комбинезон можно надевать для зимних прогулок.</p>
+
+            <h3>Стирка:</h3>
+            <p>Стирайте комбинезон только тогда, когда это действительно необходимо. Частая стирка может сократить срок службы мембраны и DWR-покрытия. Комбинезон из ткани softshell рекомендуется стирать при температуре не выше 30°C в деликатном режиме, используя мягкие моющие средства без средств для отбеливания и кондиционеров, чтобы сохранить водоотталкивающие свойства ткани. Перед стиркой лучше застегнуть все застёжки и липучки.</p>
+
+            <h3>Сушка:</h3>
+            <p>Сушить комбинезон следует в расправленном виде, избегая прямых солнечных лучей и интенсивного нагрева. Не используйте машинную сушку, не гладьте и не подвергайте изделие химической чистке, чтобы оно долго оставалось функциональным и привлекательным.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Характеристики курток -->
+    <div id="infoModalJackets" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModalJackets()">&times;</button>
+            <h2>Куртки Softshell</h2>
+
+            <h3>Характеристики:</h3>
+            <p><strong>Бренд:</strong> Smaillook</p>
+            <p><strong>Страна:</strong> Россия</p>
+            <p><strong>Температурный режим:</strong> Рекомендуемый температурный режим для верхней одежды из Softshell: от 0°С до +15°С. Но важно помнить, что на температурный режим влияют особенности климата и одежды, которую Вы надеваете под комбинезон из Softshell.</p>
+            <p><strong>Материал:</strong> SoftShell — это многослойная ткань с теплоизолирующими, ветрозащитными, водонепроницаемыми и паропроницаемыми свойствами.</p>
+            <p><strong>Структура:</strong> Наружный слой представляет собой плотную, ветрозащитную эластичную ткань со специальной DWR-пропиткой от влаги. Затем идёт сетчатая мембрана, которая пропускает воздух и влагу изнутри, но задерживает её снаружи. Внутренний слой — это мягкий флис с недлинным и очень густым ворсом.</p>
+            <p><strong>Состав:</strong> 100% полиэстер</p>
+            <p><strong>DWR-покрытие</strong> (Durable Water Repellent) — водоотталкивающее покрытие, которое находится на верхнем слое ткани, заставляя воду скатываться на поверхности, а не впитывать в неё.</p>
+
+            <h3>Стирка:</h3>
+            <p>Стирайте изделие только тогда, когда это действительно необходимо. Частая стирка может сократить срок службы мембраны и DWR-покрытия. Куртку из ткани softshell рекомендуется стирать при температуре не выше 30°C в деликатном режиме, используя мягкие моющие средства без средств для отбеливания и кондиционеров, чтобы сохранить водоотталкивающие свойства ткани. Перед стиркой лучше застегнуть все застёжки и липучки.</p>
+
+            <h3>Сушка:</h3>
+            <p>Сушить куртку следует в расправленном виде, избегая прямых солнечных лучей и интенсивного нагрева. Не используйте машинную сушку, не гладьте и не подвергайте изделие химической чистке, чтобы оно долго оставалось функциональным и привлекательным.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Форма заказа -->
+    <div id="orderModal" class="info-modal">
+        <div class="info-modal-content" style="max-width:480px;">
+            <button class="info-modal-close" onclick="closeOrderModal()">&times;</button>
+            <h2>Оформить заказ</h2>
+            <p id="orderProductInfo" class="order-product-info"></p>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" required placeholder="Введите ваше имя">
+                </div>
+                <div class="form-group">
+                    <label>Ваш город</label>
+                    <input type="text" name="city" required placeholder="Введите ваш город">
+                </div>
+                <div class="form-group">
+                    <label>Ваш номер телефона</label>
+                    <input type="tel" name="phone" required placeholder="+382 (___) ___-___">
+                </div>
+                <div class="form-group">
+                    <label>Выберите мессенджер для связи</label>
+                    <select name="messenger" required>
+                        <option value="" disabled selected>Выберите мессенджер</option>
+                        <option value="Viber">Viber</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Telegram">Telegram</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-order-submit">Отправить заказ</button>
+            </form>
+            <div id="orderSuccess" style="display:none; text-align:center; padding:2rem 0;">
+                <p style="color:#6D3FCA; font-size:1.1rem; font-weight:600;">Спасибо! Ваш заказ принят.</p>
+                <p style="color:#666; margin-top:0.5rem;">Мы свяжемся с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Модальное окно для просмотра изображений -->
     <div id="lightboxModal" class="lightbox-modal">
@@ -471,6 +715,112 @@
     </div>
 
     <script>
+        function openOrderModal(productName, size) {
+            document.getElementById('orderProductInfo').textContent = 'Товар: ' + productName + ', размер: ' + size;
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderSuccess').style.display = 'none';
+            document.getElementById('orderForm').reset();
+            document.getElementById('orderModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        function submitOrder(e) {
+            e.preventDefault();
+
+            // === Настройки Telegram-бота: подставьте свои значения ===
+            const TG_TOKEN = '8924159648:AAFiiopH7BhLYL1Jaf_tMh3K0SDnpwj-1og';
+            const TG_CHAT_ID = '236703853';
+
+            const form = document.getElementById('orderForm');
+            const f = new FormData(form);
+            const text =
+                '🛒 Новый заказ\n\n' +
+                document.getElementById('orderProductInfo').textContent + '\n' +
+                'Имя: ' + f.get('name') + '\n' +
+                'Город: ' + f.get('city') + '\n' +
+                'Телефон: ' + f.get('phone') + '\n' +
+                'Мессенджер: ' + f.get('messenger');
+
+            const btn = form.querySelector('.btn-order-submit');
+            btn.disabled = true;
+
+            fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text })
+            })
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data.ok) {
+                        form.style.display = 'none';
+                        document.getElementById('orderSuccess').style.display = 'block';
+                    } else {
+                        alert('Не удалось отправить заказ. Позвоните нам или напишите в мессенджер.');
+                    }
+                })
+                .catch(function () {
+                    alert('Ошибка сети. Проверьте подключение и попробуйте ещё раз.');
+                })
+                .finally(function () { btn.disabled = false; });
+        }
+
+        function openSizeTableOveralls() {
+            document.getElementById('sizeTableOveralls').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSizeTableOveralls() {
+            document.getElementById('sizeTableOveralls').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openInfoModalOveralls() {
+            document.getElementById('infoModalOveralls').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalOveralls() {
+            document.getElementById('infoModalOveralls').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        function openInfoModalJackets() {
+            document.getElementById('infoModalJackets').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModalJackets() {
+            document.getElementById('infoModalJackets').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectSize(btn) {
+            btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const card = btn.closest('.product-card');
+            const buyBtn = card.querySelector('.btn-buy-now');
+            if (buyBtn) buyBtn.classList.add('active');
+            const errorEl = buyBtn && buyBtn.previousElementSibling;
+            if (errorEl && errorEl.classList.contains('size-error')) errorEl.remove();
+        }
+
+        function handleOrderBtn(btn) {
+            const card = btn.closest('.product-card');
+            const sizeOptions = card.querySelector('.size-options');
+            const selected = sizeOptions && sizeOptions.querySelector('.size-btn.selected');
+            if (!selected) {
+                let errorEl = btn.previousElementSibling;
+                if (!errorEl || !errorEl.classList.contains('size-error')) {
+                    errorEl = document.createElement('span');
+                    errorEl.classList.add('size-error');
+                    btn.parentNode.insertBefore(errorEl, btn);
+                }
+                errorEl.textContent = 'Выберите нужный размер';
+            } else {
+                const productName = card.querySelector('h3').textContent;
+                openOrderModal(productName, selected.textContent);
+            }
+        }
+
         // Хранение текущих индексов слайдов для каждой галереи
         const currentSlides = [];
 
@@ -534,6 +884,19 @@
 
         // Инициализация обработчиков кликов для всех изображений
         document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('orderModal').addEventListener('click', function(e) {
+                if (e.target === this) closeOrderModal();
+            });
+            document.getElementById('sizeTableOveralls').addEventListener('click', function(e) {
+                if (e.target === this) closeSizeTableOveralls();
+            });
+            document.getElementById('infoModalOveralls').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalOveralls();
+            });
+            document.getElementById('infoModalJackets').addEventListener('click', function(e) {
+                if (e.target === this) closeInfoModalJackets();
+            });
+
             // Обработчики для карточек с галереями
             const galleries = document.querySelectorAll('.product-gallery');
             galleries.forEach((gallery, galleryIndex) => {
