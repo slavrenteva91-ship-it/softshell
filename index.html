@@ -1,81 +1,89 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="cnr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интернет-магазин Софтшелл</title>
+    <script src="/js/lang.js"></script>
+    <title>Internet prodavnica Softshell</title>
+    <link rel="alternate" hreflang="cnr" href="https://softshell.mcway.org/">
+    <link rel="alternate" hreflang="ru" href="https://softshell.mcway.org/ru/">
+    <link rel="alternate" hreflang="x-default" href="https://softshell.mcway.org/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         h2 { font-weight: normal; }
     </style>
 </head>
 <body>
-    <!-- Шапка сайта -->
+    <!-- Zaglavlje sajta -->
     <header>
         <div class="container">
             <div class="logo">
-                <img src="images/logos/logo_2.png" alt="Логотип Софтшелл" class="logo-img">
+                <img src="/images/logos/logo_2.png" alt="Softshell logo" class="logo-img">
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Главная</a></li>
-                    <li><a href="catalog/softshell.html">Софтшелл</a></li>
-                    <li><a href="catalog/waterproofs.html">Непромокайки</a></li>
-                    <li><a href="catalog/eva-shoes.html">Сапоги из ЭВА</a></li>
+                    <li><a href="/" class="active">Početna</a></li>
+                    <li><a href="/catalog/softshell.html">Softshell</a></li>
+                    <li><a href="/catalog/waterproofs.html">Kišna odjeća</a></li>
+                    <li><a href="/catalog/eva-shoes.html">EVA čizme</a></li>
                 </ul>
             </nav>
+            <div class="lang-switch">
+                <a href="/" class="active" data-set-lang="cnr">CG</a>
+                <a href="/ru/" data-set-lang="ru">RU</a>
+            </div>
         </div>
     </header>
 
-    <!-- Категории товаров -->
+    <!-- Kategorije proizvoda -->
     <section class="categories">
         <div class="container">
-             <h2>Изделия для защиты вашего ребенка от дождя и грязи</h2>
-            <p class="section-description">Выберите интересующую вас категорию товаров</p>
+             <h2>Odjeća i obuća koja štiti vaše dijete od kiše i blata</h2>
+            <p class="section-description">Izaberite kategoriju proizvoda koja vas zanima</p>
             <div class="categories-grid">
-                <a href="catalog/softshell.html" class="category-card category-card--with-image">
+                <a href="/catalog/softshell.html" class="category-card category-card--with-image">
                     <div class="category-card-text">
-                        <h3>Софтшелл</h3>
-                        <p>Куртки и комбинезоны из инновационного материала</p>
-                        <span class="category-link">Перейти →</span>
+                        <h3>Softshell</h3>
+                        <p>Jakne i kombinezoni od inovativnog materijala</p>
+                        <span class="category-link">Pogledaj →</span>
                     </div>
-                    <img src="images/logos/ChatGPT Image Mar 2, 2026, 10_44_17 AM.png" alt="Софтшелл" class="category-card-img">
+                    <img src="/images/logos/ChatGPT Image Mar 2, 2026, 10_44_17 AM.png" alt="Softshell" class="category-card-img">
                 </a>
-                <a href="catalog/eva-shoes.html" class="category-card category-card--with-image">
+                <a href="/catalog/eva-shoes.html" class="category-card category-card--with-image">
                     <div class="category-card-text">
-                        <h3>Сапоги из ЭВА</h3>
-                        <p>Легкая и удобная обувь из материала EVA</p>
-                        <span class="category-link">Перейти →</span>
+                        <h3>EVA čizme</h3>
+                        <p>Lagana i udobna obuća od EVA materijala</p>
+                        <span class="category-link">Pogledaj →</span>
                     </div>
-                    <img src="images/logos/ChatGPT Image Feb 27, 2026, 12_31_59 PM.png" alt="Сапоги из ЭВА" class="category-card-img category-card-img--small">
+                    <img src="/images/logos/ChatGPT Image Feb 27, 2026, 12_31_59 PM.png" alt="EVA čizme" class="category-card-img category-card-img--small">
                 </a>
-                <a href="catalog/waterproofs.html" class="category-card category-card--with-image">
+                <a href="/catalog/waterproofs.html" class="category-card category-card--with-image">
                     <div class="category-card-text">
-                        <h3>Непромокайки</h3>
-                        <p>Водонепроницаемая одежда для защиты от непогоды</p>
-                        <span class="category-link">Перейти →</span>
+                        <h3>Kišna odjeća</h3>
+                        <p>Vodootporna odjeća za zaštitu od lošeg vremena</p>
+                        <span class="category-link">Pogledaj →</span>
                     </div>
-                    <img src="images/logos/image_new.png" alt="Непромокайки" class="category-card-img category-card-img--small">
+                    <img src="/images/logos/image_new.png" alt="Kišna odjeća" class="category-card-img category-card-img--small">
                 </a>
             </div>
         </div>
     </section>
-  <!-- Контакты -->
+  <!-- Kontakt -->
     <section class="contacts">
         <div class="container">
-            <h2>Контакты</h2>
+            <h2>Kontakt</h2>
             <div class="contacts-icons">
                 <a href="https://t.me/SLavr91" class="contact-icon-link" target="_blank" rel="noopener">
-                    <img src="images/icons/telegram-logo.png" alt="Telegram">
+                    <img src="/images/icons/telegram-logo.png" alt="Telegram">
                 </a>
                 <a href="viber://chat?number=%2B38268112962" class="contact-icon-link">
-                    <img src="images/icons/viber.webp" alt="Viber">
+                    <img src="/images/icons/viber.webp" alt="Viber">
                 </a>
                 <a href="https://wa.me/38268112962" class="contact-icon-link" target="_blank" rel="noopener">
-                    <img src="images/icons/whatsapp.png" alt="WhatsApp">
+                    <img src="/images/icons/whatsapp.png" alt="WhatsApp">
                 </a>
             </div>
             <div class="contacts-phone">
@@ -83,21 +91,21 @@
             </div>
         </div>
     </section>
-    <!-- Секция преимуществ -->
+    <!-- Prednosti -->
     <section class="advantages">
         <div class="container">
             <div class="advantages-grid">
                 <div class="advantage-item">
-                    <h3>✓ Быстрая доставка</h3>
-                    <p>Доставим ваш заказ в течение 1-3 дней в любую точку страны</p>
+                    <h3>✓ Brza dostava</h3>
+                    <p>Dostavljamo vašu narudžbu za 1–3 dana na svaku adresu u zemlji</p>
                 </div>
                 <div class="advantage-item">
-                    <h3>✓ Выгодные цены</h3>
-                    <p>Работаем напрямую с производителями, без посредников</p>
+                    <h3>✓ Povoljne cijene</h3>
+                    <p>Radimo direktno sa proizvođačima, bez posrednika</p>
                 </div>
                 <div class="advantage-item">
-                    <h3>✓ Поддержка 24/7</h3>
-                    <p>Наши специалисты всегда готовы помочь вам с выбором</p>
+                    <h3>✓ Podrška 24/7</h3>
+                    <p>Naši stručnjaci su uvijek spremni da vam pomognu pri izboru</p>
                 </div>
             </div>
         </div>

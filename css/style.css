@@ -95,6 +95,39 @@ nav a.active {
     box-shadow: 0 2px 8px rgba(140, 74, 16, 0.18);
 }
 
+/* Переключатель языка */
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid rgba(107, 61, 18, 0.35);
+    border-radius: 999px;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.lang-switch a {
+    display: block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #6b3d12;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-switch a:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-switch a.active {
+    background-color: #fff;
+    color: #b8691a;
+    box-shadow: 0 1px 4px rgba(140, 74, 16, 0.2);
+}
+
 /* Главный баннер */
 .hero {
     background: linear-gradient(135deg, #FFE5CC 0%, #FFDAB9 100%);
