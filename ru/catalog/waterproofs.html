@@ -539,7 +539,6 @@
                     <span class="size-selector-label">Выберите размер</span>
                     <div class="size-options">
                         <button class="size-btn" onclick="selectSize(this)">92</button>
-                        <button class="size-btn" onclick="selectSize(this)">110</button>
                     </div>
                     <p class="price">15 €</p>
                     <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
@@ -602,6 +601,38 @@
                     <p class="price">15 €</p>
                     <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
                 </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-gallery" data-gallery="6">
+                            <div class="gallery-images">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb.png" alt="Полукомбинезон жёлтый - фото 1">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb2.png" alt="Полукомбинезон жёлтый - фото 2">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb3.png" alt="Полукомбинезон жёлтый - фото 3">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb4.png" alt="Полукомбинезон жёлтый - фото 4">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb5.png" alt="Полукомбинезон жёлтый - фото 5">
+                                <img src="/images/products/waterproof_semi-overalls/zuti_memb6.png" alt="Полукомбинезон жёлтый - фото 6">
+                            </div>
+                            <button class="gallery-nav prev" onclick="changeSlide(6, -1)">&#10094;</button>
+                            <button class="gallery-nav next" onclick="changeSlide(6, 1)">&#10095;</button>
+                            <div class="gallery-indicators">
+                                <div class="gallery-indicator active" onclick="goToSlide(6, 0)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 1)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 2)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 3)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 4)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(6, 5)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Жёлтый</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">104</button>
+                    </div>
+                    <p class="price">15 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
             </div>
         </div>
     </section>
@@ -646,9 +677,10 @@
                     <div class="product-image">
                         <div class="product-gallery" data-gallery="5">
                             <div class="gallery-images">
-                                <img src="/images/products/waterproof_semi-overalls/pistachio.jpg" alt="Полукомбинезон фисташковый - фото 1">
-                                <img src="/images/products/waterproof_semi-overalls/pistachio2.jpg" alt="Полукомбинезон фисташковый - фото 2">
-                                <img src="/images/products/waterproof_semi-overalls/pistachio3.jpg" alt="Полукомбинезон фисташковый - фото 3">
+                                <img src="/images/products/waterproof_semi-overalls/yellow.jpg" alt="Полукомбинезон жёлтый - фото 1">
+                                <img src="/images/products/waterproof_semi-overalls/yellow2.jpg" alt="Полукомбинезон жёлтый - фото 2">
+                                <img src="/images/products/waterproof_semi-overalls/yellow3.jpg" alt="Полукомбинезон жёлтый - фото 3">
+                                <img src="/images/products/waterproof_semi-overalls/yellow4.jpg" alt="Полукомбинезон жёлтый - фото 4">
                             </div>
                             <button class="gallery-nav prev" onclick="changeSlide(5, -1)">&#10094;</button>
                             <button class="gallery-nav next" onclick="changeSlide(5, 1)">&#10095;</button>
@@ -656,34 +688,7 @@
                                 <div class="gallery-indicator active" onclick="goToSlide(5, 0)"></div>
                                 <div class="gallery-indicator" onclick="goToSlide(5, 1)"></div>
                                 <div class="gallery-indicator" onclick="goToSlide(5, 2)"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3>Фисташковый</h3>
-                    <span class="size-selector-label">Выберите размер</span>
-                    <div class="size-options">
-                        <button class="size-btn" onclick="selectSize(this)">116</button>
-                    </div>
-                    <p class="price">15 €</p>
-                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-gallery" data-gallery="6">
-                            <div class="gallery-images">
-                                <img src="/images/products/waterproof_semi-overalls/yellow.jpg" alt="Полукомбинезон жёлтый - фото 1">
-                                <img src="/images/products/waterproof_semi-overalls/yellow2.jpg" alt="Полукомбинезон жёлтый - фото 2">
-                                <img src="/images/products/waterproof_semi-overalls/yellow3.jpg" alt="Полукомбинезон жёлтый - фото 3">
-                                <img src="/images/products/waterproof_semi-overalls/yellow4.jpg" alt="Полукомбинезон жёлтый - фото 4">
-                            </div>
-                            <button class="gallery-nav prev" onclick="changeSlide(6, -1)">&#10094;</button>
-                            <button class="gallery-nav next" onclick="changeSlide(6, 1)">&#10095;</button>
-                            <div class="gallery-indicators">
-                                <div class="gallery-indicator active" onclick="goToSlide(6, 0)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(6, 1)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(6, 2)"></div>
-                                <div class="gallery-indicator" onclick="goToSlide(7, 3)"></div>
+                                <div class="gallery-indicator" onclick="goToSlide(5, 3)"></div>
                             </div>
                         </div>
                     </div>
@@ -919,20 +924,6 @@
             <div class="sizes-list">
                 <p><strong>Размеры:</strong> </p>
                 <p><strong>Цвет:</strong> Мятный</p>
-                <p><strong>Срок доставки:</strong> 1-3 дня</p>
-            </div>
-            <button class="btn-order" onclick="handleOrder()">Заказать</button>
-        </div>
-    </div>
-
-    <div id="sizesModal8" class="sizes-modal">
-        <div class="sizes-modal-content">
-            <button class="sizes-modal-close" onclick="closeSizesModal('sizesModal8')">&times;</button>
-            <h2>Полукомбинезон фисташковый</h2>
-            <p>У нас в наличии следующие размеры этой модели:</p>
-            <div class="sizes-list">
-                <p><strong>Размеры:</strong> </p>
-                <p><strong>Цвет:</strong> Фисташковый</p>
                 <p><strong>Срок доставки:</strong> 1-3 дня</p>
             </div>
             <button class="btn-order" onclick="handleOrder()">Заказать</button>
