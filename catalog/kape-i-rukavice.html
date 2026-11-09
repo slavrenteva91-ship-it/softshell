@@ -389,8 +389,33 @@
             <h2>Kape</h2>
             <button class="btn-info" onclick="openInfoModalKape()">Karakteristike i opis proizvoda</button>
 
-            <div class="coming-soon">
-                <p>Modeli i cijene biće dodati uskoro.</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/images/products/kape-i-rukavice/zuti.jpg" alt="Kapa, žuta">
+                    </div>
+                    <h3>Žuta</h3>
+                    <span class="size-selector-label">Izaberite veličinu</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">52 (8+ godina)</button>
+                    </div>
+                    <p class="price">7 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Naruči</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/images/products/kape-i-rukavice/crni.jpg" alt="Kapa, crna">
+                    </div>
+                    <h3>Crna</h3>
+                    <span class="size-selector-label">Izaberite veličinu</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">46 (1-3 godine)</button>
+                        <button class="size-btn" onclick="selectSize(this)">50 (5-8 godina)</button>
+                    </div>
+                    <p class="price">7 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Naruči</button>
+                </div>
             </div>
         </div>
     </section>

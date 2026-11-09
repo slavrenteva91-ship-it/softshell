@@ -389,8 +389,33 @@
             <h2>Шапки</h2>
             <button class="btn-info" onclick="openInfoModalKape()">Характеристики и описание товара</button>
 
-            <div class="coming-soon">
-                <p>Модели и цены будут добавлены в ближайшее время.</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/images/products/kape-i-rukavice/zuti.jpg" alt="Шапка, желтая">
+                    </div>
+                    <h3>Желтая</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">52 (8+ лет)</button>
+                    </div>
+                    <p class="price">7 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/images/products/kape-i-rukavice/crni.jpg" alt="Шапка, черная">
+                    </div>
+                    <h3>Черная</h3>
+                    <span class="size-selector-label">Выберите размер</span>
+                    <div class="size-options">
+                        <button class="size-btn" onclick="selectSize(this)">46 (1-3 года)</button>
+                        <button class="size-btn" onclick="selectSize(this)">50 (5-8 лет)</button>
+                    </div>
+                    <p class="price">7 €</p>
+                    <button class="btn-buy-now" onclick="handleOrderBtn(this)">Заказать</button>
+                </div>
             </div>
         </div>
     </section>
